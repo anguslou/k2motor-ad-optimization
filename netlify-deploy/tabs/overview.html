@@ -1,0 +1,639 @@
+<div class="tab-panel overview-tab" data-tab="overview">
+    <div class="tab-header">
+        <h2>Ad Performance Overview</h2>
+        <div class="header-controls">
+            <div class="data-refresh">
+                <span class="last-updated">Last updated: <span id="last-update-time">Loading...</span></span>
+                <button class="refresh-btn" onclick="refreshData()">🔄 Refresh</button>
+            </div>
+            <div class="date-selector">
+                <select id="date-range">
+                    <option value="7d">Last 7 days</option>
+                    <option value="30d" selected>Last 30 days</option>
+                    <option value="90d">Last 90 days</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Key Performance Metrics Grid -->
+    <div class="metrics-grid">
+        <div class="metric-card primary">
+            <div class="metric-header">
+                <h3>Total Ad Spend</h3>
+                <span class="source-indicator" data-source="API Direct" title="Data from platform APIs">🟢</span>
+            </div>
+            <div class="metric-value" id="total-spend">$0</div>
+            <div class="metric-change positive">+12.5% vs last period</div>
+        </div>
+
+        <div class="metric-card primary">
+            <div class="metric-header">
+                <h3>Total Revenue</h3>
+                <span class="source-indicator" data-source="API Direct" title="Revenue from platform APIs">🟢</span>
+            </div>
+            <div class="metric-value" id="total-revenue">$0</div>
+            <div class="metric-change positive">+18.3% vs last period</div>
+        </div>
+
+        <div class="metric-card secondary">
+            <div class="metric-header">
+                <h3>Overall ROAS</h3>
+                <span class="source-indicator" data-source="Calculated" title="Calculated from revenue/spend">🟡</span>
+            </div>
+            <div class="metric-value" id="overall-roas">0.00x</div>
+            <div class="metric-change positive">+0.8x vs target (4.2x)</div>
+        </div>
+
+        <div class="metric-card secondary">
+            <div class="metric-header">
+                <h3>True ROAS</h3>
+                <span class="source-indicator" data-source="Calculated" title="Attribution-adjusted ROAS">🟡</span>
+            </div>
+            <div class="metric-value" id="true-roas">0.00x</div>
+            <div class="metric-change neutral">Cross-brand attribution analysis</div>
+        </div>
+
+        <div class="metric-card advanced">
+            <div class="metric-header">
+                <h3>POAS</h3>
+                <span class="source-indicator" data-source="Calculated" title="Profit on Ad Spend (revenue - costs)/spend">🟡</span>
+            </div>
+            <div class="metric-value" id="poas">0.00x</div>
+            <div class="metric-change">Accounts for K2Motor Performance Parts margins</div>
+        </div>
+
+        <div class="metric-card">
+            <div class="metric-header">
+                <h3>Active Campaigns</h3>
+                <div class="tooltip">
+                    <span class="source-indicator" data-source="API Direct">🟢</span>
+                    <div class="tooltiptext">
+                        <div class="tooltip-section">
+                            <span class="tooltip-title">Active Campaigns Count</span>
+                            <div class="tooltip-why">Why this matters: Shows how many K2Motor campaigns are currently running and driving traffic</div>
+                            <div class="tooltip-action">Action: Monitor for campaigns that need attention or optimization</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="metric-value" id="active-campaigns">0</div>
+            <div class="metric-change">Across Amazon, eBay, Google, Facebook</div>
+        </div>
+    </div>
+
+    <!-- Scenario-Based Alerts Section -->
+    <div class="scenario-alerts">
+        <div class="section-header">
+            <h3>🚨 Optimization Alerts</h3>
+            <span class="alert-count">Based on 10 Advanced Scenarios</span>
+        </div>
+
+        <div class="alerts-container">
+            <div class="alert-card alert-critical" data-scenario="1">
+                <div class="alert-icon">🔴</div>
+                <div class="alert-content">
+                    <div class="tooltip">
+                        <h4>High ROAS but Losing Money</h4>
+                        <div class="tooltiptext">
+                            <div class="tooltip-section">
+                                <span class="tooltip-title">Why This Alert Matters</span>
+                                <div class="tooltip-why">High ROAS looks good but POAS reveals the truth - you're actually losing money on each sale</div>
+                                <div class="tooltip-action">Action: Review product costs, shipping, and margins. Consider increasing prices or reducing ad spend.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p>Campaign "Subaru Turbo Upgrades" shows 4.22x ROAS but POAS is only 0.8x</p>
+                    <div class="alert-actions">
+                        <button class="btn-primary">Review Costs</button>
+                        <button class="btn-secondary">View Details</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-card alert-warning" data-scenario="2">
+                <div class="alert-icon">🟡</div>
+                <div class="alert-content">
+                    <h4>Ad Fatigue Detected</h4>
+                    <p>Facebook campaign frequency at 8.7x, CTR dropped 52.3%</p>
+                    <div class="alert-actions">
+                        <button class="btn-primary">Refresh Creative</button>
+                        <button class="btn-secondary">Analyze Audience</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-card alert-opportunity" data-scenario="4">
+                <div class="alert-icon">🟢</div>
+                <div class="alert-content">
+                    <h4>Attribution Opportunity</h4>
+                    <p>Retargeting shows 15.2x ROAS - investigate organic boost impact</p>
+                    <div class="alert-actions">
+                        <button class="btn-primary">Run Attribution</button>
+                        <button class="btn-secondary">Honda vs Toyota Analysis</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Performance Charts Section -->
+    <div class="performance-charts">
+        <div class="charts-header">
+            <h3>📈 Performance Trends</h3>
+            <div class="chart-controls">
+                <button class="chart-toggle active" data-chart="roas">ROAS Trend</button>
+                <button class="chart-toggle" data-chart="attribution">Attribution Analysis</button>
+                <button class="chart-toggle" data-chart="scenarios">Scenario Impact</button>
+            </div>
+        </div>
+
+        <div class="charts-container">
+            <div class="chart-wrapper active" id="roas-trend-chart">
+                <div class="chart-placeholder">
+                    <div class="chart-title">ROAS Trend - Last 30 Days</div>
+                    <div class="chart-mock">
+                        <div class="chart-line"></div>
+                        <div class="chart-data">
+                            <span>Target: 4.2x</span>
+                            <span>Current: 4.18x</span>
+                            <span>True ROAS: 3.85x</span>
+                        </div>
+                    </div>
+                    <div class="chart-note">Real charts powered by Chart.js integration</div>
+                </div>
+            </div>
+
+            <div class="chart-wrapper" id="attribution-chart">
+                <div class="chart-placeholder">
+                    <div class="chart-title">Cross-Brand Attribution Analysis</div>
+                    <div class="chart-mock">
+                        <div class="attribution-bars">
+                            <div class="bar honda" style="height: 80%">Honda Civic (with ads)</div>
+                            <div class="bar toyota" style="height: 55%">Toyota Camry (control)</div>
+                        </div>
+                    </div>
+                    <div class="chart-note">K2Motor Performance Parts cross-brand comparison</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Platform Performance Summary -->
+    <div class="platform-summary">
+        <div class="section-header">
+            <h3>🏁 Platform Performance</h3>
+            <span class="summary-note">K2Motor Performance Parts across all channels</span>
+        </div>
+
+        <div class="platform-cards">
+            <div class="platform-card amazon">
+                <div class="platform-header">
+                    <img src="assets/images/amazon-logo.png" alt="Amazon" class="platform-logo">
+                    <h4>Amazon</h4>
+                    <span class="source-indicator" data-source="API Direct">🟢</span>
+                </div>
+                <div class="platform-metrics">
+                    <div class="metric">
+                        <span class="label">ROAS</span>
+                        <span class="value">4.22x</span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">Spend</span>
+                        <span class="value">$28.5K</span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">Revenue</span>
+                        <span class="value">$120.3K</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="platform-card ebay">
+                <div class="platform-header">
+                    <img src="assets/images/ebay-logo.png" alt="eBay" class="platform-logo">
+                    <h4>eBay</h4>
+                    <span class="source-indicator" data-source="API Direct">🟢</span>
+                </div>
+                <div class="platform-metrics">
+                    <div class="metric">
+                        <span class="label">ROAS</span>
+                        <span class="value">52.5x</span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">Spend</span>
+                        <span class="value">$2.1K</span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">Revenue</span>
+                        <span class="value">$110.2K</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="platform-card google">
+                <div class="platform-header">
+                    <img src="assets/images/google-logo.png" alt="Google Ads" class="platform-logo">
+                    <h4>Google Ads</h4>
+                    <span class="source-indicator" data-source="API Direct">🟢</span>
+                </div>
+                <div class="platform-metrics">
+                    <div class="metric">
+                        <span class="label">ROAS</span>
+                        <span class="value">3.5x</span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">Spend</span>
+                        <span class="value">$9.8K</span>
+                    </div>
+                    <div class="metric">
+                        <span class="value">$34.3K</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="platform-card facebook">
+                <div class="platform-header">
+                    <img src="assets/images/facebook-logo.png" alt="Facebook" class="platform-logo">
+                    <h4>Facebook</h4>
+                    <span class="source-indicator" data-source="API Direct">🟢</span>
+                </div>
+                <div class="platform-metrics">
+                    <div class="metric">
+                        <span class="label">ROAS</span>
+                        <span class="value">2.1x</span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">Spend</span>
+                        <span class="value">$1.8K</span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">Revenue</span>
+                        <span class="value">$3.8K</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Overview Tab Specific Styles */
+.overview-tab {
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.tab-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--racing-orange);
+    padding-bottom: 15px;
+}
+
+.tab-header h2 {
+    color: var(--racing-orange);
+    font-size: 2rem;
+    margin: 0;
+}
+
+.header-controls {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.data-refresh {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+.refresh-btn {
+    background: var(--electric-blue);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.metric-card {
+    background: linear-gradient(135deg, var(--carbon-fiber) 0%, #2a2a3e 100%);
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.metric-card.primary {
+    border-left: 4px solid var(--racing-orange);
+}
+
+.metric-card.secondary {
+    border-left: 4px solid var(--electric-blue);
+}
+
+.metric-card.advanced {
+    border-left: 4px solid #ff9500;
+}
+
+.metric-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.metric-header h3 {
+    margin: 0;
+    font-size: 1rem;
+    color: #ccc;
+}
+
+.source-indicator {
+    font-size: 1.2rem;
+    cursor: help;
+}
+
+.metric-value {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 5px;
+}
+
+.metric-change {
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+.metric-change.positive {
+    color: #4ade80;
+}
+
+.metric-change.negative {
+    color: #f87171;
+}
+
+.scenario-alerts {
+    margin-bottom: 40px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.section-header h3 {
+    color: var(--racing-orange);
+    margin: 0;
+}
+
+.alerts-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 20px;
+}
+
+.alert-card {
+    background: var(--carbon-fiber);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    gap: 15px;
+    border: 1px solid #333;
+}
+
+.alert-card.alert-critical {
+    border-left: 4px solid #dc2626;
+}
+
+.alert-card.alert-warning {
+    border-left: 4px solid #f59e0b;
+}
+
+.alert-card.alert-opportunity {
+    border-left: 4px solid #10b981;
+}
+
+.alert-icon {
+    font-size: 1.5rem;
+}
+
+.alert-content h4 {
+    margin: 0 0 10px 0;
+    color: white;
+}
+
+.alert-content p {
+    margin: 0 0 15px 0;
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+.alert-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 5px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.btn-primary {
+    background: var(--racing-orange);
+    color: white;
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--electric-blue);
+    border: 1px solid var(--electric-blue);
+}
+
+.performance-charts {
+    margin-bottom: 40px;
+}
+
+.charts-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.charts-header h3 {
+    color: var(--racing-orange);
+    margin: 0;
+}
+
+.chart-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.chart-toggle {
+    background: transparent;
+    border: 1px solid #333;
+    color: #ccc;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.chart-toggle.active {
+    background: var(--electric-blue);
+    color: white;
+    border-color: var(--electric-blue);
+}
+
+.charts-container {
+    position: relative;
+    height: 300px;
+}
+
+.chart-wrapper {
+    display: none;
+    height: 100%;
+}
+
+.chart-wrapper.active {
+    display: block;
+}
+
+.chart-placeholder {
+    background: var(--carbon-fiber);
+    border: 1px solid #333;
+    border-radius: 10px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.chart-title {
+    font-size: 1.2rem;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.chart-mock {
+    width: 80%;
+    height: 60%;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.chart-line {
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--racing-orange) 0%, var(--electric-blue) 100%);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.attribution-bars {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    height: 100%;
+    gap: 20px;
+}
+
+.bar {
+    width: 80px;
+    background: var(--racing-orange);
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    color: white;
+    font-size: 0.8rem;
+    padding: 10px 5px;
+    border-radius: 5px 5px 0 0;
+}
+
+.bar.toyota {
+    background: var(--electric-blue);
+}
+
+.platform-summary {
+    margin-bottom: 40px;
+}
+
+.platform-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.platform-card {
+    background: var(--carbon-fiber);
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.platform-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.platform-logo {
+    width: 24px;
+    height: 24px;
+}
+
+.platform-header h4 {
+    margin: 0;
+    color: white;
+    flex: 1;
+}
+
+.platform-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.metric {
+    display: flex;
+    justify-content: space-between;
+}
+
+.metric .label {
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+.metric .value {
+    color: white;
+    font-weight: bold;
+}
+</style>

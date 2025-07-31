@@ -1,0 +1,358 @@
+/* K2Motor Performance Parts - Sports Car Theme */
+
+/* Color Variables */
+:root {
+    --racing-orange: #FF6B35;
+    --electric-blue: #00D4FF;
+    --dark-bg: #0F0F23;
+    --carbon-fiber: #1a1a2e;
+    --neon-green: #10b981;
+    --warning-yellow: #f59e0b;
+    --danger-red: #ef4444;
+}
+
+/* Sports Car Aesthetic */
+body.sports-car-theme {
+    background: radial-gradient(ellipse at center, var(--carbon-fiber) 0%, var(--dark-bg) 70%);
+    position: relative;
+}
+
+body.sports-car-theme::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(90deg, transparent 0%, rgba(255, 107, 53, 0.03) 50%, transparent 100%),
+        linear-gradient(0deg, transparent 0%, rgba(0, 212, 255, 0.02) 50%, transparent 100%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Racing Stripes Effect - Static version */
+.dashboard-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        var(--racing-orange) 20%, 
+        var(--electric-blue) 40%, 
+        var(--racing-orange) 60%, 
+        var(--electric-blue) 80%, 
+        transparent 100%
+    );
+    /* Removed animation to prevent page width changes */
+}
+
+/* Neon Glow Effects */
+.nav-tab.active {
+    box-shadow: 0 0 15px rgba(255, 107, 53, 0.3);
+    text-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
+}
+
+.nav-tab:hover {
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+}
+
+/* Performance Parts Styling */
+.metrics-card {
+    background: linear-gradient(135deg, var(--carbon-fiber) 0%, rgba(26, 26, 46, 0.8) 100%);
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.metrics-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--racing-orange), transparent);
+    /* Removed scan animation to prevent page width changes */
+}
+
+.metrics-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--racing-orange);
+    box-shadow: 
+        0 5px 20px rgba(0, 0, 0, 0.3),
+        0 0 15px rgba(255, 107, 53, 0.1);
+}
+
+/* High-Performance Data Display */
+.metric-value {
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    font-size: 1.8rem;
+    color: var(--electric-blue);
+    text-shadow: 0 0 8px rgba(0, 212, 255, 0.3);
+    letter-spacing: 1px;
+}
+
+.metric-label {
+    color: #ccc;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+/* Racing-Inspired Buttons */
+.btn-primary {
+    background: linear-gradient(135deg, var(--racing-orange) 0%, #ff8555 100%);
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn-primary:hover::before {
+    left: 100%;
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, var(--electric-blue) 0%, #00b8e6 100%);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(0, 212, 255, 0.4);
+}
+
+/* Performance Status Indicators */
+.status-excellent {
+    color: var(--neon-green);
+    font-weight: bold;
+    text-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
+}
+
+.status-good {
+    color: var(--electric-blue);
+    font-weight: bold;
+    text-shadow: 0 0 8px rgba(0, 212, 255, 0.3);
+}
+
+.status-warning {
+    color: var(--warning-yellow);
+    font-weight: bold;
+    text-shadow: 0 0 8px rgba(245, 158, 11, 0.3);
+}
+
+.status-critical {
+    color: var(--danger-red);
+    font-weight: bold;
+    text-shadow: 0 0 8px rgba(239, 68, 68, 0.3);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* Carbon Fiber Texture */
+.carbon-fiber-bg {
+    background: 
+        linear-gradient(27deg, #151515 0%, transparent 70%),
+        linear-gradient(335deg, #151515 0%, transparent 70%),
+        var(--carbon-fiber);
+    background-size: 20px 20px;
+}
+
+/* Holographic Effect for Premium Elements */
+.holographic {
+    background: linear-gradient(
+        45deg,
+        var(--racing-orange) 0%,
+        var(--electric-blue) 25%,
+        var(--racing-orange) 50%,
+        var(--electric-blue) 75%,
+        var(--racing-orange) 100%
+    );
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: hologram 3s linear infinite;
+}
+
+@keyframes hologram {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Speedometer-Style Progress Bars */
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #333;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--racing-orange), var(--electric-blue));
+    border-radius: 4px;
+    transition: width 0.8s ease;
+    position: relative;
+}
+
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: progressShine 2s ease-in-out infinite;
+}
+
+@keyframes progressShine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Performance Parts Grid Layout */
+.performance-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+/* Turbo Boost Animation for Important Alerts */
+.turbo-boost {
+    animation: turboBoost 0.6s ease-out;
+}
+
+@keyframes turboBoost {
+    0% { 
+        transform: scale(1) rotate(0deg);
+        filter: brightness(1);
+    }
+    50% { 
+        transform: scale(1.05) rotate(1deg);
+        filter: brightness(1.2);
+    }
+    100% { 
+        transform: scale(1) rotate(0deg);
+        filter: brightness(1);
+    }
+}
+
+/* Racing Flag Pattern for Backgrounds */
+.checkered-flag {
+    background-image: 
+        linear-gradient(45deg, #333 25%, transparent 25%),
+        linear-gradient(-45deg, #333 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #333 75%),
+        linear-gradient(-45deg, transparent 75%, #333 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    opacity: 0.1;
+}
+
+/* Exhaust Flame Effect for High Performance Metrics */
+.exhaust-flame {
+    position: relative;
+}
+
+.exhaust-flame::after {
+    content: '🔥';
+    position: absolute;
+    right: -25px;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: flicker 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes flicker {
+    0% { opacity: 0.7; transform: translateY(-50%) scale(0.9); }
+    100% { opacity: 1; transform: translateY(-50%) scale(1.1); }
+}
+
+/* High-Tech Border Effects */
+.tech-border {
+    border: 1px solid #333;
+    position: relative;
+}
+
+.tech-border::before,
+.tech-border::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    background: var(--racing-orange);
+}
+
+.tech-border::before {
+    top: -1px;
+    left: -1px;
+}
+
+.tech-border::after {
+    bottom: -1px;
+    right: -1px;
+}
+
+/* Responsive Sports Theme */
+@media (max-width: 768px) {
+    .performance-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .metric-value {
+        font-size: 1.5rem;
+    }
+    
+    .dashboard-header::after {
+        height: 2px;
+    }
+}

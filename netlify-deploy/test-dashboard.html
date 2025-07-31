@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K2Motor Dashboard Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0F0F23;
+            color: white;
+            padding: 20px;
+        }
+        .test-result {
+            background: #1a1a2e;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #FF6B35;
+        }
+        .pass { border-left-color: #39FF14; }
+        .fail { border-left-color: #FF073A; }
+    </style>
+</head>
+<body>
+    <h1>K2Motor Dashboard Tests</h1>
+    
+    <div id="test-results">
+        <div class="test-result">Testing data files...</div>
+    </div>
+
+    <script>
+        async function runTests() {
+            const results = document.getElementById('test-results');
+            results.innerHTML = '';
+            
+            // Test 1: Campaign data loading
+            try {
+                const response = await fetch('assets/data/campaign-data.json');
+                const data = await response.json();
+                results.innerHTML += `<div class="test-result pass">✅ Campaign data loaded: ${data.length} campaigns</div>`;
+                
+                // Show sample campaign
+                const sample = data[0];
+                results.innerHTML += `<div class="test-result pass">Sample: ${sample.campaignName} - ${sample.roas}x ROAS</div>`;
+                
+            } catch (error) {
+                results.innerHTML += `<div class="test-result fail">❌ Campaign data loading failed: ${error.message}</div>`;
+            }
+            
+            // Test 2: Attribution data loading
+            try {
+                const response = await fetch('assets/data/attribution-data.json');
+                const data = await response.json();
+                results.innerHTML += `<div class="test-result pass">✅ Attribution data loaded</div>`;
+            } catch (error) {
+                results.innerHTML += `<div class="test-result fail">❌ Attribution data loading failed: ${error.message}</div>`;
+            }
+            
+            // Test 3: Dashboard content script
+            if (typeof DashboardContentManager !== 'undefined') {
+                results.innerHTML += `<div class="test-result pass">✅ Dashboard content manager available</div>`;
+            } else {
+                results.innerHTML += `<div class="test-result fail">❌ Dashboard content manager not found</div>`;
+            }
+            
+            // Test 4: CSS files
+            const cssFiles = ['main.css', 'sports-theme.css', 'dashboard-content.css'];
+            for (const cssFile of cssFiles) {
+                try {
+                    const response = await fetch(`assets/css/${cssFile}`);
+                    if (response.ok) {
+                        results.innerHTML += `<div class="test-result pass">✅ CSS file loaded: ${cssFile}</div>`;
+                    } else {
+                        results.innerHTML += `<div class="test-result fail">❌ CSS file missing: ${cssFile}</div>`;
+                    }
+                } catch (error) {
+                    results.innerHTML += `<div class="test-result fail">❌ CSS file error: ${cssFile}</div>`;
+                }
+            }
+        }
+        
+        // Run tests on page load
+        runTests();
+    </script>
+</body>
+</html>

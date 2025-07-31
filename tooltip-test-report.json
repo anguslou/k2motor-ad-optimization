@@ -1,0 +1,58 @@
+{
+  "timestamp": "2025-07-31T06:02:56.825Z",
+  "testResults": {
+    "overview": {
+      "ROAS": {
+        "success": false,
+        "message": "Tooltip not visible on hover (found 34 tooltip elements total)",
+        "details": {
+          "hasVisibleTooltip": false,
+          "tooltip": null,
+          "totalTooltips": 34
+        }
+      },
+      "Real ROI": {
+        "success": false,
+        "message": "Metric element 'Real ROI' not found or not visible",
+        "details": null
+      },
+      "POAS": {
+        "success": false,
+        "message": "Metric element 'POAS' not found or not visible",
+        "details": null
+      },
+      "Total Revenue": {
+        "success": false,
+        "message": "Metric element 'Total Revenue' not found or not visible",
+        "details": null
+      },
+      "Total Spend": {
+        "success": false,
+        "message": "Metric element 'Total Spend' not found or not visible",
+        "details": null
+      },
+      "Active Campaigns": {
+        "success": false,
+        "message": "Metric element 'Active Campaigns' not found or not visible",
+        "details": null
+      }
+    },
+    "campaigns": {},
+    "screenshots": [
+      "/Volumes/SSD/Hivebot Projects/K2Motor/dashboard/screenshots/2025-07-31T06-02-51-538Z-01-initial-load.png",
+      "/Volumes/SSD/Hivebot Projects/K2Motor/dashboard/screenshots/2025-07-31T06-02-53-933Z-02-overview-tab-loaded.png",
+      "/Volumes/SSD/Hivebot Projects/K2Motor/dashboard/screenshots/2025-07-31T06-02-56-369Z-03-overview-tooltips-tested.png"
+    ],
+    "summary": {
+      "totalTests": 6,
+      "passedTests": 0,
+      "failedTests": 6
+    }
+  },
+  "summary": {
+    "totalTests": 6,
+    "passedTests": 0,
+    "failedTests": 6,
+    "successRate": "0.0"
+  }
+}

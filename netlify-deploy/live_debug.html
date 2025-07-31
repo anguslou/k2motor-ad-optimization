@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>K2Motor Live Debug - What's Wrong?</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #0F0F23; color: white; padding: 20px; }
+        .section { background: #1a1a2e; padding: 20px; margin: 15px 0; border-radius: 10px; border-left: 4px solid #FF6B35; }
+        .error { border-left-color: #FF073A; }
+        .success { border-left-color: #39FF14; }
+        .warning { border-left-color: #FFD700; }
+        .code { background: #000; padding: 10px; border-radius: 5px; font-family: monospace; margin: 10px 0; }
+        .dashboard-preview { border: 3px solid #FF6B35; border-radius: 10px; margin: 20px 0; }
+        h2 { color: #FF6B35; }
+        h3 { color: #00D4FF; }
+        .status { font-weight: bold; }
+        .metric { display: inline-block; background: #333; padding: 8px 15px; margin: 5px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>🏎️ K2Motor Dashboard Live Debug</h1>
+    <p>This page will help us identify what's wrong with the dashboard UI.</p>
+    
+    <div id="test-results"></div>
+    
+    <h2>📱 Live Dashboard Preview</h2>
+    <iframe id="dashboard-frame" src="index.html" class="dashboard-preview" width="100%" height="800"></iframe>
+    
+    <script>
+        const results = document.getElementById('test-results');
+        const iframe = document.getElementById('dashboard-frame');
+        
+        function addSection(title, content, type = 'section') {
+            const div = document.createElement('div');
+            div.className = `section ${type}`;
+            div.innerHTML = `<h3>${title}</h3>${content}`;
+            results.appendChild(div);
+        }
+        
+        async function runComprehensiveTest() {
+            addSection('🔄 Starting Comprehensive Dashboard Test', 'Testing all components...', 'section');
+            
+            // Test 1: Data Files
+            try {
+                const campaignResp = await fetch('assets/data/campaign-data.json');
+                const campaigns = await campaignResp.json();
+                
+                let dataContent = `
+                    <div class="status">✅ Campaign data loaded: ${campaigns.length} campaigns</div>
+                    <div>Platforms found: ${[...new Set(campaigns.map(c => c.platform))].join(', ')}</div>
+                `;
+                
+                // Check specific platforms
+                const hasWalmart = campaigns.some(c => c.platform === 'Walmart');
+                const hasFacebook = campaigns.some(c => c.platform === 'Facebook');
+                const hasGoogle = campaigns.some(c => c.platform === 'Google Ads');
+                
+                dataContent += `
+                    <div class="metric">Walmart: ${hasWalmart ? '✅' : '❌'}</div>
+                    <div class="metric">Facebook Removed: ${!hasFacebook ? '✅' : '❌'}</div>
+                    <div class="metric">Google Ads Removed: ${!hasGoogle ? '✅' : '❌'}</div>
+                `;
+                
+                addSection('📊 Data Files Test', dataContent, hasWalmart && !hasFacebook ? 'success' : 'error');
+                
+            } catch (error) {
+                addSection('📊 Data Files Test', `❌ Error: ${error.message}`, 'error');
+            }
+            
+            // Test 2: CSS Files
+            try {
+                const cssFiles = ['main.css', 'sports-theme.css', 'dashboard-content.css'];
+                let cssContent = '';
+                
+                for (const file of cssFiles) {
+                    const resp = await fetch(`assets/css/${file}`);
+                    if (resp.ok) {
+                        cssContent += `<div class="status">✅ ${file} loaded</div>`;
+                    } else {
+                        cssContent += `<div class="status">❌ ${file} failed</div>`;
+                    }
+                }
+                
+                addSection('🎨 CSS Files Test', cssContent, 'success');
+                
+            } catch (error) {
+                addSection('🎨 CSS Files Test', `❌ Error: ${error.message}`, 'error');
+            }
+            
+            // Test 3: JavaScript Files
+            try {
+                const jsFiles = ['dashboard-content.js', 'main.js', 'dashboard.js'];
+                let jsContent = '';
+                
+                for (const file of jsFiles) {
+                    const resp = await fetch(`assets/js/${file}`);
+                    if (resp.ok) {
+                        const content = await resp.text();
+                        jsContent += `<div class="status">✅ ${file} loaded (${Math.round(content.length/1024)}KB)</div>`;
+                        
+                        // Check for specific content
+                        if (file === 'dashboard-content.js') {
+                            const hasRealROI = content.includes('totalRealROI');
+                            const hasWalmartColor = content.includes('#0071CE');
+                            jsContent += `
+                                <div class="metric">Real ROI code: ${hasRealROI ? '✅' : '❌'}</div>
+                                <div class="metric">Walmart color: ${hasWalmartColor ? '✅' : '❌'}</div>
+                            `;
+                        }
+                    } else {
+                        jsContent += `<div class="status">❌ ${file} failed</div>`;
+                    }
+                }
+                
+                addSection('📜 JavaScript Files Test', jsContent, 'success');
+                
+            } catch (error) {
+                addSection('📜 JavaScript Files Test', `❌ Error: ${error.message}`, 'error');
+            }
+        }
+        
+        // Test iframe when it loads
+        iframe.onload = function() {
+            setTimeout(() => {
+                try {
+                    const doc = iframe.contentDocument || iframe.contentWindow.document;
+                    
+                    // Basic structure test
+                    const header = doc.querySelector('.dashboard-header');
+                    const nav = doc.querySelector('.nav-tabs');
+                    const content = doc.querySelector('#tab-content');
+                    
+                    let structureContent = `
+                        <div class="metric">Header: ${header ? '✅' : '❌'}</div>
+                        <div class="metric">Navigation: ${nav ? '✅' : '❌'}</div>
+                        <div class="metric">Content Area: ${content ? '✅' : '❌'}</div>
+                    `;
+                    
+                    if (content) {
+                        const contentLength = content.innerHTML.length;
+                        structureContent += `<div>Content Length: ${contentLength} characters</div>`;
+                        
+                        if (contentLength < 100) {
+                            structureContent += `<div class="status">⚠️ Content seems empty or not loaded</div>`;
+                            structureContent += `<div class="code">Content: ${content.innerHTML}</div>`;
+                        }
+                    }
+                    
+                    addSection('🏗️ Dashboard Structure Test', structureContent, 'section');
+                    
+                    // Metrics test
+                    const metrics = doc.querySelectorAll('.metric-card');
+                    const platforms = doc.querySelectorAll('.platform-card');
+                    
+                    let metricsContent = `
+                        <div class="metric">Metric Cards: ${metrics.length}</div>
+                        <div class="metric">Platform Cards: ${platforms.length}</div>
+                    `;
+                    
+                    if (metrics.length > 0) {
+                        const metricTitles = Array.from(metrics).map(m => 
+                            m.querySelector('.metric-title')?.textContent || 'Unknown'
+                        );
+                        metricsContent += `<div>Metrics: ${metricTitles.join(', ')}</div>`;
+                        
+                        const hasRealROI = metricTitles.includes('Real ROI');
+                        metricsContent += `<div class="metric">Real ROI Metric: ${hasRealROI ? '✅' : '❌'}</div>`;
+                    }
+                    
+                    if (platforms.length > 0) {
+                        const platformNames = Array.from(platforms).map(p => 
+                            p.querySelector('h4')?.textContent || 'Unknown'
+                        );
+                        metricsContent += `<div>Platforms: ${platformNames.join(', ')}</div>`;
+                        
+                        const hasWalmart = platformNames.includes('Walmart');
+                        const hasFacebook = platformNames.includes('Facebook');
+                        metricsContent += `
+                            <div class="metric">Walmart Platform: ${hasWalmart ? '✅' : '❌'}</div>
+                            <div class="metric">No Facebook: ${!hasFacebook ? '✅' : '❌'}</div>
+                        `;
+                    }
+                    
+                    addSection('📊 Dashboard Content Test', metricsContent, 'section');
+                    
+                    // JavaScript objects test
+                    const win = iframe.contentWindow;
+                    let jsObjectsContent = `
+                        <div class="metric">DashboardContentManager: ${win.dashboardContentManager ? '✅' : '❌'}</div>
+                        <div class="metric">k2MotorDashboard: ${win.k2MotorDashboard ? '✅' : '❌'}</div>
+                    `;
+                    
+                    if (win.dashboardContentManager) {
+                        jsObjectsContent += `<div>✅ DashboardContentManager is initialized</div>`;
+                    } else {
+                        jsObjectsContent += `<div class="status">❌ DashboardContentManager NOT initialized - This is the problem!</div>`;
+                    }
+                    
+                    addSection('🔧 JavaScript Objects Test', jsObjectsContent, 'section');
+                    
+                } catch (error) {
+                    addSection('❌ Dashboard Content Test Failed', `Error: ${error.message}`, 'error');
+                }
+            }, 2000);
+        };
+        
+        // Run initial tests
+        runComprehensiveTest();
+        
+        // Add refresh button
+        const refreshBtn = document.createElement('button');
+        refreshBtn.textContent = '🔄 Refresh Tests';
+        refreshBtn.style.cssText = 'background: #FF6B35; color: white; border: none; padding: 10px 20px; border-radius: 5px; margin: 20px 0; cursor: pointer;';
+        refreshBtn.onclick = () => {
+            results.innerHTML = '';
+            runComprehensiveTest();
+            iframe.src = iframe.src; // Refresh iframe
+        };
+        document.body.insertBefore(refreshBtn, results);
+    </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+[
+  {
+    "testId": "EXP-089",
+    "testGroup": "Honda Civic Brake Pads",
+    "controlGroup": "Toyota Camry Brake Pads", 
+    "adSpend": 2450.00,
+    "testRevenue": 16130.00,
+    "controlRevenue": 8450.00,
+    "apparentROAS": 6.58,
+    "trueROAS": 4.77,
+    "incrementalLift": 52.4,
+    "confidence": 95,
+    "scenario": 4,
+    "description": "Cross-brand control group analysis for true incrementality"
+  },
+  {
+    "testId": "EXP-091",
+    "testGroup": "Subaru Turbo Upgrades",
+    "controlGroup": "Honda Performance Parts", 
+    "adSpend": 3290.00,
+    "testRevenue": 13980.00,
+    "controlRevenue": 6720.00,
+    "apparentROAS": 4.25,
+    "trueROAS": 2.21,
+    "incrementalLift": 108.1,
+    "confidence": 89,
+    "scenario": 1,
+    "description": "High-performing ad with attribution challenges"
+  },
+  {
+    "testId": "EXP-093",
+    "testGroup": "BMW M3 Parts",
+    "controlGroup": "Audi RS Performance", 
+    "adSpend": 4150.00,
+    "testRevenue": 25670.00,
+    "controlRevenue": 12340.00,
+    "apparentROAS": 6.19,
+    "trueROAS": 3.22,
+    "incrementalLift": 108.1,
+    "confidence": 94,
+    "scenario": 7,
+    "description": "Cross-platform attribution measurement"
+  },
+  {
+    "testId": "EXP-095",
+    "testGroup": "Universal Cold Air Intakes",
+    "controlGroup": "Brand-Specific Intakes", 
+    "adSpend": 1870.00,
+    "testRevenue": 8920.00,
+    "controlRevenue": 5240.00,
+    "apparentROAS": 4.77,
+    "trueROAS": 1.97,
+    "incrementalLift": 70.2,
+    "confidence": 91,
+    "scenario": 8,
+    "description": "Universal vs brand-specific product performance"
+  },
+  {
+    "testId": "EXP-097",
+    "testGroup": "Audi ECU Tuning",
+    "controlGroup": "BMW ECU Tuning", 
+    "adSpend": 5120.00,
+    "testRevenue": 47330.00,
+    "controlRevenue": 28910.00,
+    "apparentROAS": 9.24,
+    "trueROAS": 3.60,
+    "incrementalLift": 63.7,
+    "confidence": 97,
+    "scenario": 2,
+    "description": "Premium segment cross-brand analysis"
+  }
+]

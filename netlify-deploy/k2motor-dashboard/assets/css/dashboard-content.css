@@ -1,0 +1,2510 @@
+/* K2Motor Performance Parts - Dashboard Content Styles */
+/* Racing-themed styles for the automotive performance dashboard */
+
+/* =============================================================================
+   Dashboard Tab Layout
+   ============================================================================= */
+
+.dashboard-tab {
+    padding: 2rem;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.tab-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--racing-orange);
+}
+
+.tab-header h2 {
+    color: var(--racing-orange);
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.tab-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-refresh, .btn-export {
+    background: var(--carbon-fiber);
+    color: var(--electric-blue);
+    border: 1px solid var(--electric-blue);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.btn-refresh:hover, .btn-export:hover {
+    background: var(--electric-blue);
+    color: var(--dark-bg);
+    transform: translateY(-2px);
+}
+
+/* =============================================================================
+   Metrics Section
+   ============================================================================= */
+
+.metrics-section {
+    margin-bottom: 3rem;
+}
+
+.metrics-section h3 {
+    color: var(--electric-blue);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.metric-card {
+    background: linear-gradient(135deg, var(--carbon-fiber) 0%, #1a1a2e 100%);
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 1.5rem;
+    position: relative;
+    z-index: 1; /* Base z-index for cards */
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    overflow: visible; /* Allow tooltips to extend beyond card */
+}
+
+.metric-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--racing-orange), var(--electric-blue));
+    opacity: 0.7;
+}
+
+.metric-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    border-color: var(--racing-orange);
+    box-shadow: 0 8px 30px rgba(255, 107, 53, 0.2), 0 0 20px rgba(0, 212, 255, 0.1);
+    z-index: 100; /* Higher than other cards when hovered */
+}
+
+.metric-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.metric-icon {
+    font-size: 1.5rem;
+}
+
+.metric-title {
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.metric-value-container {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.metric-value {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--racing-orange);
+    text-shadow: 0 0 10px rgba(255, 107, 53, 0.3);
+}
+
+.metric-trend {
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+.metric-trend.positive {
+    background: rgba(57, 255, 20, 0.1);
+    color: var(--neon-green);
+    border: 1px solid var(--neon-green);
+}
+
+.metric-trend.negative {
+    background: rgba(255, 7, 58, 0.1);
+    color: var(--danger-red);
+    border: 1px solid var(--danger-red);
+}
+
+.metric-details small {
+    color: #999;
+    font-size: 0.85rem;
+}
+
+/* Color variants for different metrics */
+.metric-card.racing-orange .metric-icon { color: var(--racing-orange); }
+.metric-card.electric-blue .metric-icon { color: var(--electric-blue); }
+.metric-card.neon-green .metric-icon { color: var(--neon-green); }
+.metric-card.warning-yellow .metric-icon { color: var(--warning-yellow); }
+
+/* =============================================================================
+   Platform Performance Section
+   ============================================================================= */
+
+.platform-performance-section {
+    margin-bottom: 3rem;
+}
+
+.platform-performance-section h3 {
+    color: var(--electric-blue);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.platform-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.platform-card {
+    background: var(--carbon-fiber);
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.platform-card:hover {
+    border-color: var(--electric-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0, 212, 255, 0.1);
+}
+
+.platform-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.platform-header h4 {
+    color: var(--racing-orange);
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.campaign-count {
+    background: rgba(0, 212, 255, 0.1);
+    color: var(--electric-blue);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    border: 1px solid var(--electric-blue);
+}
+
+.platform-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.platform-metric {
+    text-align: center;
+}
+
+.platform-metric .label {
+    display: block;
+    color: #999;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.25rem;
+}
+
+.platform-metric .value {
+    display: block;
+    color: var(--racing-orange);
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.platform-status {
+    text-align: center;
+    padding: 0.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.platform-status.excellent {
+    background: rgba(57, 255, 20, 0.1);
+    color: var(--neon-green);
+    border: 1px solid var(--neon-green);
+}
+
+.platform-status.good {
+    background: rgba(255, 215, 0, 0.1);
+    color: var(--warning-yellow);
+    border: 1px solid var(--warning-yellow);
+}
+
+.platform-status.average {
+    background: rgba(255, 107, 53, 0.1);
+    color: var(--racing-orange);
+    border: 1px solid var(--racing-orange);
+}
+
+.platform-status.poor {
+    background: rgba(255, 7, 58, 0.1);
+    color: var(--danger-red);
+    border: 1px solid var(--danger-red);
+}
+
+/* =============================================================================
+   Top Campaigns Section
+   ============================================================================= */
+
+.top-campaigns-section {
+    margin-bottom: 3rem;
+}
+
+.top-campaigns-section h3 {
+    color: var(--electric-blue);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.campaigns-table-container {
+    background: var(--carbon-fiber);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #333;
+}
+
+.campaigns-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+}
+
+/* Tab 1 - Fixed width HTML table approach */
+.campaigns-table th:nth-child(1),
+.campaigns-table td:nth-child(1) { width: 40%; }  /* Campaign name */
+.campaigns-table th:nth-child(2),
+.campaigns-table td:nth-child(2) { width: 10%; }  /* Platform */
+.campaigns-table th:nth-child(3),
+.campaigns-table td:nth-child(3) { width: 10%; }  /* ROAS */
+.campaigns-table th:nth-child(4),
+.campaigns-table td:nth-child(4) { width: 10%; }  /* POAS */
+.campaigns-table th:nth-child(5),
+.campaigns-table td:nth-child(5) { width: 12%; }  /* Revenue */
+.campaigns-table th:nth-child(6),
+.campaigns-table td:nth-child(6) { width: 10%; }  /* Trend */
+.campaigns-table th:nth-child(7),
+.campaigns-table td:nth-child(7) { width: 8%; }   /* Actions */
+
+.campaigns-table th {
+    background: rgba(255, 107, 53, 0.1);
+    color: var(--racing-orange);
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.85rem;
+    border-bottom: 2px solid var(--racing-orange);
+    white-space: nowrap;
+}
+
+.campaigns-table td {
+    padding: 12px;
+    border-bottom: 1px solid #333;
+    color: #ffffff;
+    white-space: nowrap;
+}
+
+/* Center align numeric columns */
+.campaigns-table th:nth-child(2),
+.campaigns-table td:nth-child(2),
+.campaigns-table th:nth-child(3),
+.campaigns-table td:nth-child(3),
+.campaigns-table th:nth-child(4),
+.campaigns-table td:nth-child(4),
+.campaigns-table th:nth-child(6),
+.campaigns-table td:nth-child(6),
+.campaigns-table th:nth-child(7),
+.campaigns-table td:nth-child(7) {
+    text-align: center;
+}
+
+/* Right align revenue column */
+.campaigns-table th:nth-child(5),
+.campaigns-table td:nth-child(5) {
+    text-align: right;
+}
+
+.campaign-row:hover {
+    background: rgba(0, 212, 255, 0.05);
+}
+
+.campaign-name strong {
+    color: var(--electric-blue);
+    font-size: 1rem;
+}
+
+.campaign-name small {
+    display: block;
+    color: #999;
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+}
+
+.platform-badge {
+    display: inline-block;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.roas strong, .poas strong {
+    font-size: 1.1rem;
+}
+
+.btn-small {
+    background: var(--electric-blue);
+    color: var(--dark-bg);
+    border: none;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-small:hover {
+    background: var(--racing-orange);
+    transform: scale(1.05);
+}
+
+/* =============================================================================
+   Alerts Section
+   ============================================================================= */
+
+.alerts-section {
+    margin-bottom: 3rem;
+}
+
+.alerts-section h3 {
+    color: var(--electric-blue);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.alerts-container {
+    display: grid;
+    gap: 1rem;
+}
+
+.alert-card {
+    background: var(--carbon-fiber);
+    border-radius: 10px;
+    padding: 1.5rem;
+    border-left: 4px solid;
+    transition: all 0.3s ease;
+}
+
+.alert-card.critical {
+    border-left-color: var(--danger-red);
+    background: linear-gradient(135deg, var(--carbon-fiber) 0%, rgba(255, 7, 58, 0.05) 100%);
+}
+
+.alert-card.warning {
+    border-left-color: var(--warning-yellow);
+    background: linear-gradient(135deg, var(--carbon-fiber) 0%, rgba(255, 215, 0, 0.05) 100%);
+}
+
+.alert-card.review {
+    border-left-color: var(--electric-blue);
+    background: linear-gradient(135deg, var(--carbon-fiber) 0%, rgba(0, 212, 255, 0.05) 100%);
+}
+
+.alert-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.alert-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.alert-icon {
+    font-size: 1.5rem;
+}
+
+.alert-title {
+    color: var(--racing-orange);
+    font-size: 1.1rem;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.alert-priority {
+    background: rgba(255, 107, 53, 0.1);
+    color: var(--racing-orange);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid var(--racing-orange);
+}
+
+.alert-description {
+    color: #cccccc;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.alert-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.btn-action {
+    background: var(--racing-orange);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.btn-action:hover {
+    background: #ff8555;
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--electric-blue);
+    border: 1px solid var(--electric-blue);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background: var(--electric-blue);
+    color: var(--dark-bg);
+}
+
+/* Success State for No Alerts */
+.no-alerts-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    padding: 2rem;
+}
+
+.success-state {
+    text-align: center;
+    max-width: 400px;
+}
+
+.success-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.success-state h4 {
+    color: #4CAF50;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+.success-state p {
+    color: #cccccc;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.success-state small {
+    color: #999;
+    font-style: italic;
+}
+
+/* =============================================================================
+   Quick Actions Section
+   ============================================================================= */
+
+.quick-actions-section h3 {
+    color: var(--electric-blue);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.quick-actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+.quick-action-btn {
+    background: var(--carbon-fiber);
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-align: left;
+}
+
+.quick-action-btn:hover {
+    border-color: var(--racing-orange);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(255, 107, 53, 0.1);
+}
+
+.quick-action-btn .icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.action-text strong {
+    display: block;
+    color: var(--racing-orange);
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.action-text small {
+    color: #999;
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+/* =============================================================================
+   Loading and Error States
+   ============================================================================= */
+
+.loading-spinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    gap: 1rem;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #333;
+    border-top: 3px solid var(--racing-orange);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.coming-soon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    font-size: 1.5rem;
+    color: var(--electric-blue);
+    background: linear-gradient(135deg, var(--carbon-fiber) 0%, var(--dark-bg) 100%);
+    border-radius: 10px;
+    border: 1px solid #333;
+}
+
+.error-tab {
+    background: var(--carbon-fiber);
+    border: 1px solid var(--danger-red);
+    border-radius: 10px;
+    padding: 2rem;
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.error-tab h3 {
+    color: var(--danger-red);
+    margin-bottom: 1rem;
+}
+
+.error-tab p {
+    color: #cccccc;
+    margin-bottom: 1rem;
+}
+
+.error-tab details {
+    text-align: left;
+    margin: 1rem 0;
+}
+
+.error-tab pre {
+    background: #000;
+    padding: 1rem;
+    border-radius: 4px;
+    overflow: auto;
+}
+
+/* =============================================================================
+   Animations
+   ============================================================================= */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Apply staggered animations to metrics cards */
+.metric-card:nth-child(1) { animation: slideInLeft 0.5s ease 0.1s both; }
+.metric-card:nth-child(2) { animation: slideInLeft 0.5s ease 0.2s both; }
+.metric-card:nth-child(3) { animation: slideInLeft 0.5s ease 0.3s both; }
+.metric-card:nth-child(4) { animation: slideInLeft 0.5s ease 0.4s both; }
+.metric-card:nth-child(5) { animation: slideInLeft 0.5s ease 0.5s both; }
+
+/* =============================================================================
+   Tab 2: Campaign Deep Dive Specific Styles
+   ============================================================================= */
+
+.campaign-summary-section {
+    margin-bottom: 3rem;
+}
+
+.campaign-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.summary-metric-card {
+    background: linear-gradient(135deg, var(--carbon-fiber) 0%, #1a1a2e 100%);
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 1.5rem;
+    position: relative;
+    z-index: 1; /* Base z-index for cards */
+    overflow: visible; /* Allow tooltips to extend beyond card */
+    transition: all 0.3s ease;
+}
+
+.summary-metric-card:hover {
+    border-color: var(--electric-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0, 212, 255, 0.1);
+    z-index: 100; /* Higher than other cards when hovered */
+}
+
+.summary-metric-card h4 {
+    color: var(--electric-blue);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0 0 0.5rem 0;
+}
+
+.summary-metric-card .value {
+    color: var(--racing-orange);
+    font-size: 2rem;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.summary-metric-card .change {
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.summary-metric-card .change.positive {
+    color: var(--neon-green);
+}
+
+.summary-metric-card .change.negative {
+    color: var(--danger-red);
+}
+
+/* Platform Tabs */
+.platform-tabs-container {
+    margin-bottom: 2rem;
+}
+
+.platform-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #333;
+    padding-bottom: 0;
+}
+
+.platform-tab {
+    background: transparent;
+    border: none;
+    color: #999;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    position: relative;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+}
+
+.platform-tab:hover {
+    color: var(--racing-orange);
+    background: rgba(255, 107, 53, 0.05);
+}
+
+.platform-tab.active {
+    color: var(--racing-orange);
+    border-bottom-color: var(--racing-orange);
+    background: rgba(255, 107, 53, 0.1);
+}
+
+/* Platform Panel Content */
+.platform-content {
+    position: relative;
+}
+
+.platform-panel {
+    display: none;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.platform-panel.active {
+    display: block;
+}
+
+/* Status Badges */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-badge.excellent {
+    background: rgba(57, 255, 20, 0.1);
+    color: var(--neon-green);
+    border: 1px solid var(--neon-green);
+}
+
+.status-badge.good {
+    background: rgba(255, 215, 0, 0.1);
+    color: var(--warning-yellow);
+    border: 1px solid var(--warning-yellow);
+}
+
+.status-badge.warning {
+    background: rgba(255, 107, 53, 0.1);
+    color: var(--racing-orange);
+    border: 1px solid var(--racing-orange);
+}
+
+.status-badge.critical {
+    background: rgba(255, 7, 58, 0.1);
+    color: var(--danger-red);
+    border: 1px solid var(--danger-red);
+}
+
+.status-badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+/* Enhanced Campaign Table */
+.enhanced-campaign-table {
+    background: var(--carbon-fiber);
+    border-radius: 12px;
+    overflow-x: auto;
+    overflow-y: visible;
+    border: 1px solid #333;
+    margin-bottom: 2rem;
+}
+
+.enhanced-campaign-table table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+}
+
+/* Tab 2 - Simple Enhanced Campaign Table */
+.enhanced-campaign-table th,
+.enhanced-campaign-table td {
+    padding: 12px;
+    white-space: nowrap;
+}
+
+.enhanced-campaign-table th {
+    text-align: left;
+    font-weight: 600;
+    color: #FF6B35;
+    border-bottom: 2px solid #FF6B35;
+}
+
+.enhanced-campaign-table td {
+    border-bottom: 1px solid #333;
+}
+
+
+.enhanced-campaign-table tr:hover {
+    background: rgba(0, 212, 255, 0.05);
+}
+
+.enhanced-campaign-table tr:last-child td {
+    border-bottom: none;
+}
+
+.campaign-name-cell {
+    min-width: 200px;
+}
+
+.campaign-name-cell strong {
+    color: var(--electric-blue);
+    font-size: 1rem;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.campaign-name-cell .campaign-type {
+    color: #999;
+    font-size: 0.8rem;
+    display: block;
+}
+
+.performance-cell {
+    text-align: center;
+    min-width: 80px;
+}
+
+.performance-value {
+    font-size: 1.1rem;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.performance-trend {
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.performance-trend.up {
+    color: var(--neon-green);
+}
+
+.performance-trend.down {
+    color: var(--danger-red);
+}
+
+.performance-trend.stable {
+    color: var(--warning-yellow);
+}
+
+/* Optimization Cards */
+.optimization-opportunities-section {
+    margin-bottom: 3rem;
+}
+
+.optimization-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    overflow: visible; /* Ensure tooltips can extend outside grid */
+}
+
+.optimization-card {
+    background: linear-gradient(135deg, var(--carbon-fiber) 0%, #1a1a2e 100%);
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 1.5rem;
+    position: relative;
+    z-index: 1; /* Ensure cards are below tooltips */
+    overflow: visible; /* Allow tooltips to extend outside card boundaries */
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.optimization-card:hover {
+    border-color: var(--racing-orange);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.15);
+}
+
+.optimization-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--racing-orange), var(--electric-blue));
+    border-radius: 12px 12px 0 0;
+}
+
+.optimization-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.optimization-title {
+    color: var(--racing-orange);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.opportunity-value {
+    background: rgba(57, 255, 20, 0.1);
+    color: var(--neon-green);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: 1px solid var(--neon-green);
+}
+
+.optimization-description {
+    color: #cccccc;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.optimization-metrics {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+.optimization-metric {
+    text-align: center;
+}
+
+.optimization-metric .label {
+    display: block;
+    color: #999;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.25rem;
+}
+
+.optimization-metric .value {
+    display: block;
+    color: var(--electric-blue);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.optimization-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-optimize {
+    background: var(--racing-orange);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    flex: 1;
+}
+
+.btn-optimize:hover {
+    background: #ff8555;
+    transform: translateY(-1px);
+}
+
+.btn-details {
+    background: transparent;
+    color: var(--electric-blue);
+    border: 1px solid var(--electric-blue);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    flex: 1;
+}
+
+.btn-details:hover {
+    background: var(--electric-blue);
+    color: var(--dark-bg);
+}
+
+/* Underperforming Campaigns Alert */
+.underperforming-section {
+    margin-bottom: 3rem;
+}
+
+.underperforming-alert {
+    background: linear-gradient(135deg, var(--carbon-fiber) 0%, rgba(255, 7, 58, 0.05) 100%);
+    border: 1px solid var(--danger-red);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.underperforming-alert .alert-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.underperforming-alert .alert-icon {
+    font-size: 1.5rem;
+    color: var(--danger-red);
+}
+
+.underperforming-alert .alert-title {
+    color: var(--danger-red);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.underperforming-campaigns-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.underperforming-campaign-item {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    padding: 1rem;
+    border-left: 3px solid var(--danger-red);
+}
+
+.underperforming-campaign-item .campaign-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.underperforming-campaign-item .campaign-name {
+    color: var(--electric-blue);
+    font-weight: 600;
+}
+
+.underperforming-campaign-item .campaign-issue {
+    color: #cccccc;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* =============================================================================
+   Tab 3: Budget Optimization Specific Styles
+   ============================================================================= */
+
+.budget-summary-section {
+    margin-bottom: 3rem;
+}
+
+.budget-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    overflow: visible; /* Allow tooltips to extend beyond grid */
+}
+
+/* Platform Allocation Cards */
+.platform-allocation-section {
+    margin-bottom: 3rem;
+}
+
+.allocation-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+    overflow: visible; /* Allow tooltips to extend beyond grid */
+}
+
+.platform-allocation-card {
+    background: linear-gradient(135deg, var(--carbon-fiber) 0%, #1a1a2e 100%);
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 1.5rem;
+    position: relative;
+    z-index: 1; /* Base z-index for cards */
+    overflow: visible; /* Allow tooltips to extend beyond card */
+    transition: all 0.3s ease;
+}
+
+.platform-allocation-card:hover {
+    border-color: var(--electric-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 212, 255, 0.1);
+    z-index: 100; /* Higher than other cards when hovered */
+}
+
+.platform-allocation-card .platform-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.platform-allocation-card .platform-header h4 {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.allocation-current {
+    margin-bottom: 1.5rem;
+}
+
+.allocation-current .label {
+    display: block;
+    color: #999;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.allocation-current .value {
+    display: block;
+    color: var(--racing-orange);
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--racing-orange);
+    transition: width 0.3s ease;
+    border-radius: 4px;
+}
+
+.allocation-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+.allocation-metrics-grid .metric {
+    text-align: center;
+}
+
+.allocation-metrics-grid .metric .label {
+    display: block;
+    color: #999;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.25rem;
+}
+
+.allocation-metrics-grid .metric .value {
+    display: block;
+    color: var(--electric-blue);
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.allocation-recommendation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 107, 53, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 107, 53, 0.2);
+}
+
+.rec-label {
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+.rec-value {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.rec-value.positive {
+    color: var(--neon-green);
+}
+
+.rec-value.negative {
+    color: var(--danger-red);
+}
+
+.rec-value.neutral {
+    color: var(--warning-yellow);
+}
+
+/* POAS Analysis Section */
+.poas-analysis-section {
+    margin-bottom: 3rem;
+}
+
+.poas-analysis-intro {
+    background: rgba(0, 212, 255, 0.05);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.poas-analysis-intro p {
+    color: var(--electric-blue);
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.poas-analysis-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: visible; /* Allow tooltips to extend beyond grid */
+}
+
+.poas-analysis-card {
+    background: var(--carbon-fiber);
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 1rem;
+    position: relative;
+    z-index: 1; /* Base z-index for cards */
+    overflow: visible; /* Allow tooltips to extend beyond card */
+    transition: all 0.3s ease;
+}
+
+.poas-analysis-card:hover {
+    border-color: var(--racing-orange);
+    transform: translateY(-1px);
+    z-index: 100; /* Higher than other cards when hovered */
+}
+
+.poas-analysis-card .analysis-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.poas-analysis-card .analysis-header h4 {
+    color: var(--electric-blue);
+    font-size: 0.9rem;
+    margin: 0;
+    flex: 1;
+}
+
+.poas-analysis-card .platform-badge {
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    margin-left: 0.5rem;
+}
+
+.analysis-metrics {
+    margin-bottom: 1rem;
+}
+
+.metric-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.metric-row .label {
+    color: #999;
+    font-size: 0.8rem;
+}
+
+.metric-row .value {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.analysis-recommendation {
+    padding-top: 0.75rem;
+    border-top: 1px solid #333;
+}
+
+.analysis-recommendation small {
+    color: #ccc;
+    font-size: 0.75rem;
+    line-height: 1.4;
+}
+
+/* Status Colors for POAS Analysis */
+.status-excellent { color: var(--neon-green) !important; }
+.status-good { color: var(--warning-yellow) !important; }
+.status-average { color: var(--electric-blue) !important; }
+.status-warning { color: var(--racing-orange) !important; }
+.status-critical { color: var(--danger-red) !important; }
+
+/* Budget Recommendations Section */
+.budget-recommendations-section {
+    margin-bottom: 3rem;
+}
+
+.recommendations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+    overflow: visible; /* Allow tooltips to extend beyond grid */
+}
+
+.recommendation-card {
+    background: linear-gradient(135deg, var(--carbon-fiber) 0%, #1a1a2e 100%);
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 1.5rem;
+    position: relative;
+    z-index: 1; /* Base z-index for cards */
+    overflow: visible; /* Allow tooltips to extend beyond card */
+    transition: all 0.3s ease;
+}
+
+.recommendation-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    z-index: 100; /* Higher than other cards when hovered */
+}
+
+.recommendation-card.rec-opportunity {
+    border-left: 4px solid var(--neon-green);
+    background: linear-gradient(135deg, var(--carbon-fiber) 0%, rgba(57, 255, 20, 0.05) 100%);
+}
+
+.recommendation-card.rec-warning {
+    border-left: 4px solid var(--danger-red);
+    background: linear-gradient(135deg, var(--carbon-fiber) 0%, rgba(255, 7, 58, 0.05) 100%);
+}
+
+.recommendation-card.rec-info {
+    border-left: 4px solid var(--electric-blue);
+    background: linear-gradient(135deg, var(--carbon-fiber) 0%, rgba(0, 212, 255, 0.05) 100%);
+}
+
+.rec-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.rec-header h4 {
+    color: var(--racing-orange);
+    font-size: 1.1rem;
+    margin: 0;
+    flex: 1;
+}
+
+.rec-priority {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.priority-high {
+    background: rgba(255, 7, 58, 0.1);
+    color: var(--danger-red);
+    border: 1px solid var(--danger-red);
+}
+
+.priority-medium {
+    background: rgba(255, 215, 0, 0.1);
+    color: var(--warning-yellow);
+    border: 1px solid var(--warning-yellow);
+}
+
+.priority-low {
+    background: rgba(0, 212, 255, 0.1);
+    color: var(--electric-blue);
+    border: 1px solid var(--electric-blue);
+}
+
+.rec-impact {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.impact-label {
+    color: #999;
+    font-size: 0.85rem;
+}
+
+.impact-value {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.impact-positive {
+    border-left: 3px solid var(--neon-green);
+}
+
+.impact-negative {
+    border-left: 3px solid var(--danger-red);
+}
+
+.impact-positive .impact-value {
+    color: var(--neon-green);
+}
+
+.impact-negative .impact-value {
+    color: var(--danger-red);
+}
+
+.rec-description {
+    margin-bottom: 1.5rem;
+}
+
+.rec-description p {
+    color: #ccc;
+    line-height: 1.6;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.rec-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Budget Simulator Section */
+.budget-simulator-section {
+    margin-bottom: 3rem;
+}
+
+.simulator-container {
+    background: linear-gradient(135deg, var(--carbon-fiber) 0%, #1a1a2e 100%);
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.simulator-intro {
+    margin-bottom: 1.5rem;
+}
+
+.simulator-intro p {
+    color: #ccc;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.simulator-controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Additional Budget Tab Responsive Styles */
+@media (max-width: 768px) {
+    .allocation-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .recommendations-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .poas-analysis-grid {
+        grid-template-columns: 1fr;
+        max-height: none;
+    }
+    
+    .allocation-metrics-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .simulator-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .rec-header {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+    }
+    
+    .rec-actions {
+        flex-direction: column;
+    }
+}
+
+/* =============================================================================
+   Educational Tooltips for Client-Friendly Explanations
+   ============================================================================= */
+
+/* Tooltip container - position relative for absolute positioning of tooltip */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: help;
+    border-bottom: 1px dotted var(--electric-blue);
+}
+
+/* Hover effect for tooltip trigger */
+.tooltip:hover {
+    border-bottom-color: var(--racing-orange);
+}
+
+/* Tooltip text - hidden by default */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    opacity: 0;
+    width: 320px;
+    background-color: #333;
+    color: #fff;
+    text-align: left;
+    border-radius: 8px;
+    padding: 12px;
+    position: fixed;
+    z-index: 99999;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--electric-blue);
+    font-size: 0.85rem;
+    line-height: 1.4;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    pointer-events: none;
+    
+    /* Default positioning - will be overridden by JavaScript */
+    top: auto;
+    left: auto;
+    bottom: auto;
+    right: auto;
+}
+
+/* No arrow for dynamic positioning - cleaner look */
+
+/* Tooltip visibility is controlled by JavaScript tooltip fixer */
+
+/* Tooltip sections styling */
+.tooltip .tooltiptext .tooltip-section {
+    margin-bottom: 8px;
+}
+
+.tooltip .tooltiptext .tooltip-section:last-child {
+    margin-bottom: 0;
+}
+
+.tooltip .tooltiptext .tooltip-title {
+    color: var(--racing-orange);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.tooltip .tooltiptext .tooltip-why {
+    color: var(--electric-blue);
+    font-size: 0.8rem;
+    margin-bottom: 4px;
+}
+
+.tooltip .tooltiptext .tooltip-action {
+    color: #ccc;
+    font-size: 0.8rem;
+}
+
+/* Responsive tooltip positioning */
+@media (max-width: 768px) {
+    .tooltip .tooltiptext {
+        width: 280px;
+        margin-left: -140px;
+        font-size: 0.8rem;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tooltip .tooltiptext {
+        width: 250px;
+        margin-left: -125px;
+        font-size: 0.75rem;
+        padding: 8px;
+    }
+}
+
+/* Dynamic positioning handled by JavaScript - tooltips float above all elements */
+
+/* Alert card tooltips use pure CSS positioning (not JavaScript) */
+.alert-card .tooltip .tooltiptext {
+    position: absolute;
+    left: 100%; /* Position to the right of the element */
+    top: 0; /* Align with top of element */
+    margin-left: 15px; /* 15px gap */
+    z-index: 99999;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.alert-card .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Optimization card tooltips use pure CSS positioning (not JavaScript) */
+.optimization-card .tooltip .tooltiptext {
+    position: absolute;
+    right: 100%; /* Position to the left of the element */
+    top: 0; /* Align with top of element */
+    margin-right: 15px; /* 15px gap */
+    z-index: 999; /* Higher than cards (z-index: 1) */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.optimization-card .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Budget metric card tooltips - use pure CSS positioning */
+.summary-metric-card .tooltip .tooltiptext,
+.budget-performance-summary .tooltip .tooltiptext {
+    position: absolute !important;
+    left: 100%; /* Position to the right */
+    top: 50%;
+    transform: translateY(-50%); /* Center vertically */
+    margin-left: 15px; /* Gap to the right */
+    z-index: 999999 !important; /* Much higher than cards */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.summary-metric-card .tooltip:hover .tooltiptext,
+.budget-performance-summary .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Platform allocation card tooltips - use pure CSS positioning */
+.platform-allocation-card .tooltip .tooltiptext {
+    position: absolute !important;
+    left: 100%; /* Position to the right */
+    top: 50%;
+    transform: translateY(-50%); /* Center vertically */
+    margin-left: 15px; /* Gap to the right */
+    z-index: 999999 !important; /* Much higher than cards */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.platform-allocation-card .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* POAS analysis card tooltips - use pure CSS positioning */
+.poas-analysis-card .tooltip .tooltiptext {
+    position: absolute !important;
+    left: 100%; /* Position to the right */
+    top: 50%;
+    transform: translateY(-50%); /* Center vertically */
+    margin-left: 15px; /* Gap to the right */
+    z-index: 999999 !important; /* Much higher than cards */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.poas-analysis-card .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Recommendation card tooltips - use pure CSS positioning */
+.recommendation-card .tooltip .tooltiptext {
+    position: absolute !important;
+    left: 100%; /* Position to the right */
+    top: 50%;
+    transform: translateY(-50%); /* Center vertically */
+    margin-left: 15px; /* Gap to the right */
+    z-index: 999999 !important; /* Much higher than cards */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.recommendation-card .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+/* Attribution card tooltips - use pure CSS positioning */
+.metric-card .tooltip .tooltiptext {
+    position: absolute !important;
+    left: 100%; /* Position to the right */
+    top: 50%;
+    transform: translateY(-50%); /* Center vertically */
+    margin-left: 15px; /* Gap to the right */
+    z-index: 999999 !important; /* Much higher than cards */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.metric-card .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Attribution table header tooltips - use pure CSS positioning */
+.enhanced-attribution-table th .tooltip .tooltiptext {
+    position: absolute !important;
+    left: 50%;
+    top: 100%;
+    transform: translateX(-50%); /* Center horizontally */
+    margin-top: 10px; /* Gap below header */
+    z-index: 999999 !important; /* Much higher than table */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.enhanced-attribution-table th .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Attribution section tooltips - use pure CSS positioning */
+.attribution-tests-section .tooltip .tooltiptext,
+.roas-comparison-section .tooltip .tooltiptext {
+    position: absolute !important;
+    left: 100%; /* Position to the right */
+    top: 50%;  
+    transform: translateY(-50%); /* Center vertically */
+    margin-left: 15px; /* Gap to the right */
+    z-index: 999999 !important; /* Much higher than sections */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.attribution-tests-section .tooltip:hover .tooltiptext,
+.roas-comparison-section .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* =============================================================================
+   Responsive Design
+   ============================================================================= */
+
+@media (max-width: 768px) {
+    .dashboard-tab {
+        padding: 1rem;
+    }
+    
+    .tab-header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+    
+    .tab-actions {
+        align-self: stretch;
+    }
+    
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .platform-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .quick-actions-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .campaigns-table-container {
+        overflow-x: auto;
+    }
+    
+    .campaigns-table {
+        min-width: 600px;
+    }
+    
+    .alert-actions {
+        flex-direction: column;
+    }
+    
+    .btn-action, .btn-secondary {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .metric-value {
+        font-size: 2rem;
+    }
+    
+    .metric-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .platform-metrics {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+    
+    .quick-action-btn {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
+    }
+}
+
+/* =============================================================================
+   Tab 4: Attribution Analysis Specific Styles
+   ============================================================================= */
+
+.attribution-dashboard {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.attribution-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid var(--racing-orange);
+}
+
+.attribution-header h2 {
+    color: var(--racing-orange);
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin: 0 0 1rem 0;
+}
+
+.attribution-header p {
+    color: #ccc;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Attribution Summary Metrics */
+.attribution-metrics {
+    margin-bottom: 3rem;
+}
+
+.attribution-metrics .metric-card-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Attribution Test Cards Grid */
+.attribution-tests-section {
+    margin-bottom: 3rem;
+}
+
+.attribution-tests-section h3 {
+    color: var(--electric-blue);
+    font-size: 1.5rem;
+    margin: 0 0 1.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.attribution-tests-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.attribution-test-card {
+    background: linear-gradient(135deg, var(--carbon-fiber) 0%, #1a1a2e 100%);
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.attribution-test-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--racing-orange), var(--electric-blue));
+    border-radius: 12px 12px 0 0;
+}
+
+.attribution-test-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.15);
+    border-color: var(--racing-orange);
+}
+
+.attribution-test-card.high {
+    border-left: 4px solid var(--neon-green);
+}
+
+.attribution-test-card.medium {
+    border-left: 4px solid var(--warning-yellow);
+}
+
+.attribution-test-card.low {
+    border-left: 4px solid var(--danger-red);
+}
+
+.test-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.test-id {
+    color: var(--racing-orange);
+    font-weight: bold;
+    font-size: 1.1rem;
+    font-family: 'Courier New', monospace;
+}
+
+.confidence-badge {
+    padding: 0.3rem 0.7rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: 1px solid;
+}
+
+.confidence-high {
+    background: rgba(57, 255, 20, 0.1);
+    color: var(--neon-green);
+    border-color: var(--neon-green);
+}
+
+.confidence-medium {
+    background: rgba(255, 215, 0, 0.1);
+    color: var(--warning-yellow);
+    border-color: var(--warning-yellow);
+}
+
+.confidence-low {
+    background: rgba(255, 7, 58, 0.1);
+    color: var(--danger-red);
+    border-color: var(--danger-red);
+}
+
+.test-groups {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+.test-group, .control-group {
+    flex: 1;
+    text-align: center;
+}
+
+.group-label {
+    display: block;
+    color: #999;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+}
+
+.group-value {
+    color: var(--electric-blue);
+    font-weight: 600;
+    font-size: 0.95rem;
+    line-height: 1.3;
+}
+
+.vs-divider {
+    color: var(--racing-orange);
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 0 0.5rem;
+}
+
+.test-metrics {
+    margin-bottom: 1rem;
+}
+
+.test-metrics .metric-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    padding: 0.3rem 0;
+}
+
+.test-metrics .metric-name {
+    color: #999;
+    font-size: 0.9rem;
+}
+
+.test-metrics .metric-value {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.lift-excellent {
+    color: var(--neon-green);
+}
+
+.lift-good {
+    color: var(--warning-yellow);
+}
+
+.lift-moderate {
+    color: var(--racing-orange);
+}
+
+.test-description {
+    color: #ccc;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    font-style: italic;
+    padding-top: 1rem;
+    border-top: 1px solid #333;
+}
+
+/* ROAS Comparison Table */
+.roas-comparison-section {
+    margin-bottom: 3rem;
+}
+
+.section-header h3 {
+    color: var(--electric-blue);
+    font-size: 1.5rem;
+    margin: 0 0 0.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.section-header p {
+    color: #ccc;
+    margin: 0 0 1.5rem 0;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.roas-comparison-table {
+    background: var(--carbon-fiber);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #333;
+}
+
+.enhanced-attribution-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: transparent;
+}
+
+.enhanced-attribution-table thead {
+    background: linear-gradient(135deg, var(--racing-orange) 0%, #ff8555 100%);
+}
+
+.enhanced-attribution-table th {
+    padding: 1rem 0.75rem;
+    text-align: left;
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--dark-bg);
+}
+
+.enhanced-attribution-table tbody tr {
+    transition: all 0.2s ease;
+    border-bottom: 1px solid #333;
+}
+
+.enhanced-attribution-table tbody tr:hover {
+    background: rgba(255, 107, 53, 0.05);
+}
+
+.enhanced-attribution-table td {
+    padding: 1rem 0.75rem;
+    color: #ccc;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #333;
+}
+
+.test-id-cell {
+    color: var(--racing-orange) !important;
+    font-weight: 600;
+    font-family: 'Courier New', monospace;
+}
+
+.category-cell {
+    color: var(--electric-blue) !important;
+    font-weight: 500;
+}
+
+.spend-cell {
+    color: #ccc !important;
+    font-weight: 600;
+}
+
+.apparent-roas-cell, .true-roas-cell {
+    font-weight: 600;
+    font-family: monospace;
+}
+
+.apparent-roas-cell {
+    color: #aaa !important;
+}
+
+.true-roas-cell {
+    color: var(--neon-green) !important;
+}
+
+.gap-cell {
+    text-align: center;
+}
+
+.gap-high .gap-value {
+    color: var(--danger-red) !important;
+    font-weight: bold;
+}
+
+.gap-medium .gap-value {
+    color: var(--warning-yellow) !important;
+    font-weight: 600;
+}
+
+.gap-low .gap-value {
+    color: var(--neon-green) !important;
+    font-weight: 600;
+}
+
+.gap-indicator {
+    margin-left: 0.5rem;
+    opacity: 0.7;
+}
+
+.confidence-cell {
+    font-weight: 600;
+    text-align: center;
+}
+
+.confidence-cell.confidence-high {
+    color: var(--neon-green) !important;
+}
+
+.confidence-cell.confidence-medium {
+    color: var(--warning-yellow) !important;
+}
+
+.confidence-cell.confidence-low {
+    color: var(--danger-red) !important;
+}
+
+.status-cell {
+    text-align: center;
+}
+
+.status-badge {
+    padding: 0.3rem 0.7rem;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid;
+}
+
+.status-badge.status-high {
+    background: rgba(57, 255, 20, 0.1);
+    color: var(--neon-green);
+    border-color: var(--neon-green);
+}
+
+.status-badge.status-medium {
+    background: rgba(255, 215, 0, 0.1);
+    color: var(--warning-yellow);
+    border-color: var(--warning-yellow);
+}
+
+.status-badge.status-low {
+    background: rgba(255, 7, 58, 0.1);
+    color: var(--danger-red);
+    border-color: var(--danger-red);
+}
+
+/* Methodology Section */
+.methodology-section {
+    margin-bottom: 2rem;
+}
+
+.methodology-card {
+    background: linear-gradient(135deg, var(--carbon-fiber) 0%, #1a1a2e 100%);
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 2rem;
+    border-left: 4px solid var(--electric-blue);
+}
+
+.methodology-card h4 {
+    color: var(--electric-blue);
+    font-size: 1.3rem;
+    margin: 0 0 1.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.methodology-content {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.method-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.method-step:hover {
+    background: rgba(0, 212, 255, 0.05);
+    border-left: 3px solid var(--electric-blue);
+}
+
+.step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: var(--racing-orange);
+    color: white;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.step-content {
+    flex: 1;
+}
+
+.step-content strong {
+    display: block;
+    color: var(--racing-orange);
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+}
+
+.step-content {
+    color: #ccc;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* Attribution Tab Responsive Styles */
+@media (max-width: 768px) {
+    .attribution-tests-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .attribution-test-card {
+        padding: 1rem;
+    }
+    
+    .test-groups {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+    
+    .vs-divider {
+        transform: rotate(90deg);
+        margin: 0.5rem 0;
+    }
+    
+    .roas-comparison-table {
+        overflow-x: auto;
+    }
+    
+    .enhanced-attribution-table {
+        min-width: 800px;
+    }
+    
+    .methodology-content {
+        gap: 1rem;
+    }
+    
+    .method-step {
+        padding: 0.75rem;
+    }
+    
+    .step-number {
+        width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .attribution-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .attribution-metrics .metric-card-group {
+        grid-template-columns: 1fr;
+    }
+    
+    .test-header {
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: flex-start;
+    }
+    
+    .enhanced-attribution-table th,
+    .enhanced-attribution-table td {
+        padding: 0.5rem 0.4rem;
+        font-size: 0.8rem;
+    }
+}

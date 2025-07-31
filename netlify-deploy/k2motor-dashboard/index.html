@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K2Motor - Performance Parts Ad Optimization Dashboard</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/sports-theme.css">
+    <link rel="stylesheet" href="assets/css/dashboard-content.css">
+    <style>
+        :root {
+            --racing-orange: #FF6B35;
+            --electric-blue: #00D4FF;
+            --dark-bg: #0F0F23;
+            --carbon-fiber: #1a1a2e;
+            --neon-green: #39FF14;
+            --danger-red: #FF073A;
+            --warning-yellow: #FFD700;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .sports-car-theme {
+            background: linear-gradient(135deg, var(--carbon-fiber) 0%, var(--dark-bg) 100%);
+        }
+
+        /* Popup Styles */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .popup-overlay.active {
+            opacity: 1;
+        }
+
+        .popup-overlay.fade-out {
+            opacity: 0;
+        }
+
+        .popup-content {
+            background: var(--carbon-fiber);
+            border: 1px solid var(--racing-orange);
+            border-radius: 15px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .popup-overlay.active .popup-content {
+            transform: scale(1);
+        }
+
+        .popup-header {
+            padding: 20px;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .popup-header h3 {
+            color: var(--racing-orange);
+            margin: 0;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: #ccc;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-btn:hover {
+            color: var(--racing-orange);
+        }
+
+        .popup-body {
+            padding: 20px;
+        }
+
+        .scenario-details h4 {
+            color: var(--electric-blue);
+            margin: 20px 0 10px 0;
+        }
+
+        .scenario-details p {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .btn-action {
+            background: var(--racing-orange);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .btn-action:hover {
+            background: #ff8555;
+        }
+
+        .scenario-learning {
+            background: rgba(255, 107, 53, 0.1);
+            border: 1px solid var(--racing-orange);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .action-feedback {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--electric-blue);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            z-index: 1001;
+            transform: translateX(100%);
+            animation: slideIn 0.3s ease forwards;
+        }
+
+        .action-feedback.fade-out {
+            animation: slideOut 0.3s ease forwards;
+        }
+
+        @keyframes slideIn {
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideOut {
+            to {
+                transform: translateX(100%);
+            }
+        }
+    </style>
+</head>
+<body class="sports-car-theme">
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <div class="logo-section">
+                <h1>K2Motor</h1>
+                <span class="tagline">Performance Parts • Ad Optimization Dashboard</span>
+            </div>
+            <div class="nav-controls">
+                <span class="demo-mode">DEMO MODE</span>
+                <button class="guided-tour-btn">Take Tour</button>
+            </div>
+        </header>
+
+        <nav class="dashboard-nav tab-navigation">
+            <ul class="nav-tabs">
+                <li class="nav-tab active" data-tab="overview">
+                    <span class="tab-icon">📊</span>
+                    Ad Performance Overview
+                </li>
+                <li class="nav-tab" data-tab="campaigns">
+                    <span class="tab-icon">🎯</span>
+                    Campaign Deep Dive
+                </li>
+                <li class="nav-tab" data-tab="budget">
+                    <span class="tab-icon">💰</span>
+                    Budget Optimization
+                </li>
+                <li class="nav-tab" data-tab="attribution">
+                    <span class="tab-icon">🧮</span>
+                    Advanced Attribution
+                </li>
+            </ul>
+        </nav>
+
+        <main class="dashboard-content">
+            <!-- Tab content will be loaded here -->
+            <div id="tab-content" class="tab-content">
+                <div class="loading-spinner">
+                    <div class="spinner"></div>
+                    <p>Loading K2Motor Ad Optimization Dashboard...</p>
+                </div>
+            </div>
+        </main>
+
+        <footer class="dashboard-footer">
+            <div class="footer-info">
+                <span>© 2025 K2Motor Ad Optimization Dashboard</span>
+                <span class="data-status">Data Status: <span class="status-indicator online">Live Demo Data</span></span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Browser compatibility polyfill -->
+    <script>
+        // Polyfill for Element.matches() for older browsers
+        if (!Element.prototype.matches) {
+            Element.prototype.matches = Element.prototype.matchesSelector || 
+                                       Element.prototype.mozMatchesSelector ||
+                                       Element.prototype.msMatchesSelector || 
+                                       Element.prototype.oMatchesSelector || 
+                                       Element.prototype.webkitMatchesSelector ||
+                                       function(s) {
+                                           var matches = (this.document || this.ownerDocument).querySelectorAll(s),
+                                               i = matches.length;
+                                           while (--i >= 0 && matches.item(i) !== this) {}
+                                           return i > -1;            
+                                       };
+        }
+    </script>
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/calculations.js"></script>
+    <script src="assets/js/metrics.js"></script>
+    <script src="assets/js/scenario-alerts.js"></script>
+    <script src="assets/js/performance-charts.js"></script>
+    <script src="assets/js/data-indicators.js"></script>
+    <script src="assets/js/hover-tooltips.js"></script>
+    <script src="assets/js/tooltip-manager.js"></script>
+    <script src="assets/js/tooltip-fixes.js"></script>
+    <script src="assets/js/dashboard-filters.js"></script>
+    <script src="assets/js/data-drilldown.js"></script>
+    <script src="assets/js/dashboard-content.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+    <script src="demo/guided-tour.js"></script>
+</body>
+</html>

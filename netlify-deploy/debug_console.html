@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>K2Motor Console Debug</title>
+    <style>
+        body { font-family: monospace; background: #0F0F23; color: #00D4FF; padding: 20px; }
+        .console { background: #1a1a2e; padding: 15px; border-radius: 5px; margin: 10px 0; }
+        .error { color: #FF073A; }
+        .warning { color: #FFD700; }
+        .success { color: #39FF14; }
+        .info { color: #00D4FF; }
+    </style>
+</head>
+<body>
+    <h1>🏎️ K2Motor Dashboard Console Debug</h1>
+    
+    <div id="console-output" class="console">
+        <div class="info">Initializing console capture...</div>
+    </div>
+    
+    <h2>Dashboard Test</h2>
+    <iframe id="dashboard-iframe" src="index.html" width="100%" height="600" style="border: 2px solid #FF6B35; border-radius: 10px;"></iframe>
+    
+    <script>
+        const consoleOutput = document.getElementById('console-output');
+        const iframe = document.getElementById('dashboard-iframe');
+        
+        // Capture console messages
+        const originalLog = console.log;
+        const originalError = console.error;
+        const originalWarn = console.warn;
+        
+        function addToConsole(message, type = 'info') {
+            const div = document.createElement('div');
+            div.className = type;
+            div.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            consoleOutput.appendChild(div);
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        }
+        
+        console.log = function(...args) {
+            addToConsole(args.join(' '), 'info');
+            originalLog.apply(console, args);
+        };
+        
+        console.error = function(...args) {
+            addToConsole('ERROR: ' + args.join(' '), 'error');
+            originalError.apply(console, args);
+        };
+        
+        console.warn = function(...args) {
+            addToConsole('WARNING: ' + args.join(' '), 'warning');
+            originalWarn.apply(console, args);
+        };
+        
+        // Monitor iframe loading
+        iframe.onload = function() {
+            addToConsole('Dashboard iframe loaded', 'success');
+            
+            try {
+                const iframeWindow = iframe.contentWindow;
+                const iframeDoc = iframe.contentDocument;
+                
+                // Check basic structure
+                setTimeout(() => {
+                    const header = iframeDoc.querySelector('.dashboard-header');
+                    const nav = iframeDoc.querySelector('.nav-tabs');
+                    const content = iframeDoc.querySelector('#tab-content');
+                    
+                    addToConsole(`Header found: ${!!header}`, header ? 'success' : 'error');
+                    addToConsole(`Navigation found: ${!!nav}`, nav ? 'success' : 'error');
+                    addToConsole(`Content container found: ${!!content}`, content ? 'success' : 'error');
+                    
+                    if (content) {
+                        addToConsole(`Content innerHTML length: ${content.innerHTML.length}`, 'info');
+                        
+                        // Check for specific elements
+                        const metrics = iframeDoc.querySelectorAll('.metric-card');
+                        const platforms = iframeDoc.querySelectorAll('.platform-card');
+                        
+                        addToConsole(`Metric cards found: ${metrics.length}`, metrics.length > 0 ? 'success' : 'warning');
+                        addToConsole(`Platform cards found: ${platforms.length}`, platforms.length > 0 ? 'success' : 'warning');
+                        
+                        // Check for Real ROI specifically
+                        const realRoiCard = Array.from(metrics).find(card => 
+                            card.textContent.includes('Real ROI')
+                        );
+                        addToConsole(`Real ROI card found: ${!!realRoiCard}`, realRoiCard ? 'success' : 'error');
+                        
+                        // Check for Walmart platform
+                        const walmartCard = Array.from(platforms).find(card => 
+                            card.textContent.includes('Walmart')
+                        );
+                        addToConsole(`Walmart platform found: ${!!walmartCard}`, walmartCard ? 'success' : 'error');
+                        
+                        // List all platform names
+                        const platformNames = Array.from(platforms).map(card => 
+                            card.querySelector('h4')?.textContent || 'Unknown'
+                        );
+                        addToConsole(`Platform names: ${platformNames.join(', ')}`, 'info');
+                        
+                        // List all metric names
+                        const metricNames = Array.from(metrics).map(card => 
+                            card.querySelector('.metric-title')?.textContent || 'Unknown'
+                        );
+                        addToConsole(`Metric names: ${metricNames.join(', ')}`, 'info');
+                    }
+                    
+                    // Check for JavaScript objects
+                    if (iframeWindow.dashboardContentManager) {
+                        addToConsole('✅ DashboardContentManager found in window', 'success');
+                    } else {
+                        addToConsole('❌ DashboardContentManager not found in window', 'error');
+                    }
+                    
+                    if (iframeWindow.k2MotorDashboard) {
+                        addToConsole('✅ k2MotorDashboard found in window', 'success');
+                    } else {
+                        addToConsole('❌ k2MotorDashboard not found in window', 'error');
+                    }
+                    
+                }, 3000);
+                
+            } catch (error) {
+                addToConsole(`Error accessing iframe: ${error.message}`, 'error');
+            }
+        };
+        
+        iframe.onerror = function() {
+            addToConsole('Failed to load dashboard iframe', 'error');
+        };
+        
+        // Initial message
+        addToConsole('Console debug initialized', 'success');
+        addToConsole('Loading dashboard in iframe...', 'info');
+    </script>
+</body>
+</html>

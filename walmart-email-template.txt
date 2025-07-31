@@ -1,0 +1,41 @@
+Subject: API Access Request - Marketplace Integration (Client ID: ac006d0a-76cc-44b2-b074-5c7588e9b964)
+
+Dear Walmart Marketplace Support Team,
+
+I am writing to request API access for our Walmart seller account. We have successfully configured OAuth authentication but are receiving 401 Unauthorized errors when attempting to access marketplace APIs.
+
+ACCOUNT DETAILS:
+- Client ID: ac006d0a-76cc-44b2-b074-5c7588e9b964
+- OAuth Status: Working (tokens generate successfully)
+- Environment: Production
+- Seller Account: [Your Seller ID - find in Partner Center]
+
+PURPOSE:
+We are developing a marketplace optimization platform that requires READ-ONLY access to:
+- Order data for performance tracking
+- Inventory levels for monitoring
+- Item information for analytics
+- Reports for business insights
+
+TECHNICAL SPECIFICATIONS:
+- Integration Type: REST API
+- Authentication: OAuth 2.0 (already configured)
+- Access Level: READ-ONLY ONLY (no write operations)
+- Use Case: Performance analytics and optimization
+
+BUSINESS JUSTIFICATION:
+This integration will help us optimize our Walmart marketplace performance through better inventory management, improved pricing strategies, and data-driven decision making.
+
+CURRENT STATUS:
+OAuth token generation works perfectly (900-second tokens), but all API endpoints return 401 Unauthorized, indicating we need marketplace API access approval.
+
+REQUEST:
+Please approve API access for our account. We are ready for immediate integration and committed to read-only access only.
+
+Thank you for your assistance. Please let me know if you need any additional information.
+
+Best regards,
+[Your Name]
+[Your Business Name]
+[Your Contact Information]
+[Your Walmart Seller Account Details]

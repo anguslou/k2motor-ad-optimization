@@ -1,0 +1,742 @@
+/* K2Motor Performance Parts - Responsive Grid System */
+/* Mobile-first responsive grid with advanced breakpoints and container queries */
+
+/* =============================================================================
+   Base Container System - Mobile First
+   ============================================================================= */
+
+.responsive-grid {
+    display: grid;
+    width: 100%;
+    gap: 1rem;
+    grid-gap: 1rem; /* Legacy support for older browsers */
+    container-type: inline-size;
+    container-name: dashboard-grid;
+}
+
+.fluid-layout {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    container-type: inline-size;
+}
+
+/* =============================================================================
+   Mobile-First Grid Definitions (Base: 320px+)
+   ============================================================================= */
+
+/* Single column layout for mobile */
+.responsive-grid {
+    grid-template-columns: 1fr;
+    padding: 0.75rem;
+    gap: 0.75rem;
+}
+
+.metrics-grid,
+.campaign-grid,
+.budget-grid,
+.attribution-grid,
+.results-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    width: 100%;
+}
+
+/* Mobile-first card sizing */
+.metrics-card,
+.campaign-card,
+.budget-card,
+.attribution-card,
+.result-card {
+    width: 100%;
+    min-height: 120px;
+    padding: 1rem;
+}
+
+/* =============================================================================
+   Responsive Breakpoints - Progressive Enhancement
+   ============================================================================= */
+
+/* Extra Small Mobile (max-width: 480px) */
+@media (max-width: 480px) {
+    .responsive-grid {
+        padding: 0.5rem;
+        gap: 0.5rem;
+        grid-gap: 0.5rem;
+    }
+    
+    .metrics-grid,
+    .campaign-grid,
+    .budget-grid,
+    .attribution-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+        grid-gap: 0.75rem;
+    }
+}
+
+/* Small Mobile (max-width: 768px) */
+@media (max-width: 768px) {
+    .responsive-grid {
+        padding: 0.75rem;
+        grid-template-columns: 1fr;
+    }
+    
+    .dashboard-section {
+        display: block;
+    }
+}
+
+/* Small Desktop (max-width: 1024px) */
+@media (max-width: 1024px) {
+    .responsive-grid {
+        max-width: 100%;
+        padding: 1rem;
+    }
+    
+    .dashboard-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Small Mobile (480px+) */
+@media (min-width: 480px) {
+    .responsive-grid {
+        padding: 1rem;
+        gap: 1rem;
+    }
+    
+    .metrics-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    
+    .campaign-grid,
+    .budget-grid,
+    .attribution-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .results-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+}
+
+/* Tablet Portrait (768px+) */
+@media (min-width: 768px) {
+    .responsive-grid {
+        grid-template-columns: repeat(12, 1fr);
+        padding: 1.5rem;
+        gap: 1.5rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .metrics-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .campaign-grid,
+    .budget-grid,
+    .attribution-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .results-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+    
+    /* Two-column layout for dashboard sections */
+    .dashboard-section {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 2rem;
+        align-items: start;
+    }
+    
+    .main-content {
+        grid-column: 1 / -1;
+    }
+    
+    .sidebar-content {
+        grid-column: span 4;
+    }
+}
+
+/* Tablet Landscape / Small Desktop (1024px+) */
+@media (min-width: 1024px) {
+    .responsive-grid {
+        grid-template-columns: repeat(12, 1fr);
+        padding: 2rem;
+        gap: 2rem;
+        max-width: 1400px;
+    }
+    
+    .metrics-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+    
+    .campaign-grid {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+    
+    .budget-grid,
+    .attribution-grid {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
+    
+    /* Three-column dashboard layout */
+    .dashboard-layout {
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        gap: 2rem;
+    }
+    
+    .left-sidebar {
+        grid-column: 1;
+    }
+    
+    .main-dashboard {
+        grid-column: 2;
+    }
+    
+    .right-sidebar {
+        grid-column: 3;
+    }
+}
+
+/* Large Desktop (1440px+) */
+@media (min-width: 1440px) {
+    .responsive-grid {
+        grid-template-columns: repeat(16, 1fr);
+        padding: 2.5rem;
+        gap: 2.5rem;
+        max-width: 1800px;
+    }
+    
+    .metrics-grid {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2.5rem;
+    }
+    
+    .campaign-grid {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
+    
+    .budget-grid,
+    .attribution-grid {
+        grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    }
+    
+    /* Ultra-wide dashboard optimizations */
+    .dashboard-ultra-wide {
+        display: grid;
+        grid-template-columns: 300px 1fr 300px;
+        gap: 3rem;
+    }
+}
+
+/* =============================================================================
+   Container Queries - Modern Responsive Design
+   ============================================================================= */
+
+/* Container-based responsive adjustments */
+@container dashboard-grid (min-width: 400px) {
+    .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .campaign-card {
+        min-height: 140px;
+    }
+}
+
+@container dashboard-grid (min-width: 600px) {
+    .metrics-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .campaign-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@container dashboard-grid (min-width: 900px) {
+    .metrics-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .campaign-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .budget-grid,
+    .attribution-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@container dashboard-grid (min-width: 1200px) {
+    .metrics-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+    
+    .campaign-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .budget-grid,
+    .attribution-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* =============================================================================
+   Flexbox Utility Classes
+   ============================================================================= */
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.flex-center {
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-between {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-around {
+    justify-content: space-around;
+    align-items: center;
+}
+
+.flex-grow {
+    flex-grow: 1;
+}
+
+.flex-shrink {
+    flex-shrink: 1;
+}
+
+.flex-no-shrink {
+    flex-shrink: 0;
+}
+
+/* =============================================================================
+   K2Motor Racing Theme Grid Enhancements
+   ============================================================================= */
+
+.racing-grid {
+    background: linear-gradient(135deg, 
+        rgba(255, 107, 53, 0.02) 0%, 
+        rgba(0, 212, 255, 0.02) 100%
+    );
+    border: 1px solid rgba(255, 107, 53, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+}
+
+.racing-grid::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        var(--racing-orange) 0%, 
+        var(--electric-blue) 50%, 
+        var(--racing-orange) 100%
+    );
+    opacity: 0.6;
+}
+
+/* Grid item racing enhancements */
+.grid-item {
+    background: var(--carbon-fiber);
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 1.5rem;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.grid-item:hover {
+    transform: translateY(-2px);
+    border-color: var(--racing-orange);
+    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.15);
+}
+
+/* Racing stripes for grid sections */
+.grid-section {
+    position: relative;
+    padding: 1rem 0;
+}
+
+.grid-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        var(--racing-orange) 50%, 
+        transparent 100%
+    );
+    border-radius: 2px;
+}
+
+/* =============================================================================
+   Accessibility Features
+   ============================================================================= */
+
+/* High contrast mode support */
+@media (prefers-contrast: high), (prefers-contrast: more) {
+    .responsive-grid,
+    .metrics-grid,
+    .campaign-grid {
+        border: 2px solid currentColor;
+    }
+    
+    .grid-item {
+        border: 2px solid currentColor;
+        background: Canvas;
+        color: CanvasText;
+    }
+    
+    .racing-grid::before,
+    .grid-section::after {
+        background: currentColor;
+    }
+}
+
+/* High contrast utility class */
+.high-contrast .responsive-grid,
+.high-contrast .grid-item {
+    border: 2px solid currentColor;
+    background: Canvas;
+    color: CanvasText;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .grid-item {
+        transition: none;
+    }
+    
+    .grid-item:hover {
+        transform: none;
+    }
+    
+    .racing-grid::before {
+        animation: none;
+    }
+}
+
+/* Focus management for keyboard navigation */
+.grid-item:focus-visible {
+    outline: 2px solid var(--electric-blue);
+    outline-offset: 2px;
+    transform: translateY(-1px);
+}
+
+.grid-item[tabindex="0"] {
+    cursor: pointer;
+}
+
+/* Screen reader optimizations */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* =============================================================================
+   Performance Optimizations
+   ============================================================================= */
+
+/* CSS Grid performance enhancements */
+.responsive-grid,
+.metrics-grid,
+.campaign-grid,
+.budget-grid,
+.attribution-grid {
+    contain: layout style;
+    will-change: auto;
+}
+
+/* Optimize repaints and reflows */
+.grid-item {
+    contain: layout style paint;
+    transform: translateZ(0); /* Force GPU acceleration */
+    backface-visibility: hidden;
+}
+
+/* Prevent layout thrashing */
+.metrics-card,
+.campaign-card,
+.budget-card,
+.attribution-card {
+    min-height: 0;
+    overflow: hidden;
+}
+
+/* =============================================================================
+   Print Styles
+   ============================================================================= */
+
+@media print {
+    .responsive-grid {
+        display: block;
+        max-width: none;
+        padding: 0;
+        gap: 0;
+    }
+    
+    .metrics-grid,
+    .campaign-grid,
+    .budget-grid,
+    .attribution-grid {
+        display: block;
+        gap: 0;
+    }
+    
+    .grid-item {
+        break-inside: avoid;
+        margin-bottom: 1rem;
+        box-shadow: none;
+        border: 1px solid #333;
+    }
+    
+    .racing-grid::before,
+    .grid-section::after {
+        display: none;
+    }
+}
+
+/* =============================================================================
+   Grid Layout Utilities
+   ============================================================================= */
+
+/* Grid positioning utilities */
+.grid-span-1 { grid-column: span 1; }
+.grid-span-2 { grid-column: span 2; }
+.grid-span-3 { grid-column: span 3; }
+.grid-span-4 { grid-column: span 4; }
+.grid-span-full { grid-column: 1 / -1; }
+
+.grid-row-span-1 { grid-row: span 1; }
+.grid-row-span-2 { grid-row: span 2; }
+.grid-row-span-3 { grid-row: span 3; }
+
+/* Grid alignment utilities */
+.grid-justify-start { justify-self: start; }
+.grid-justify-center { justify-self: center; }
+.grid-justify-end { justify-self: end; }
+.grid-justify-stretch { justify-self: stretch; }
+
+.grid-align-start { align-self: start; }
+.grid-align-center { align-self: center; }
+.grid-align-end { align-self: end; }
+.grid-align-stretch { align-self: stretch; }
+
+/* =============================================================================
+   Racing Theme Color Variables Integration
+   ============================================================================= */
+
+:root {
+    --racing-orange: #FF6B35;
+    --electric-blue: #00D4FF;
+    --carbon-fiber: #1a1a2e;
+    --neon-green: #39FF14;
+    --danger-red: #FF073A;
+    --warning-yellow: #FFD700;
+    
+    /* Grid-specific theme variables */
+    --grid-bg-primary: var(--carbon-fiber);
+    --grid-bg-secondary: rgba(26, 26, 46, 0.8);
+    --grid-border-primary: #333;
+    --grid-border-accent: var(--racing-orange);
+    --grid-text-primary: #ffffff;
+    --grid-text-secondary: #cccccc;
+}
+
+/* Theme-aware grid components */
+.grid-item[data-theme="racing"] {
+    background: linear-gradient(135deg, 
+        var(--grid-bg-primary) 0%, 
+        var(--grid-bg-secondary) 100%
+    );
+    color: var(--grid-text-primary);
+    border-color: var(--grid-border-primary);
+}
+
+.grid-item[data-theme="racing"]:hover {
+    border-color: var(--grid-border-accent);
+    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.15), 
+                0 0 15px rgba(0, 212, 255, 0.1);
+}
+
+/* =============================================================================
+   Advanced Layout Patterns
+   ============================================================================= */
+
+/* Holy Grail Layout for dashboard */
+.dashboard-holy-grail {
+    display: grid;
+    grid-template-areas: 
+        "header header header"
+        "nav main aside"
+        "footer footer footer";
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 200px 1fr 200px;
+    min-height: 100vh;
+    gap: 1rem;
+}
+
+.dashboard-header { grid-area: header; }
+.dashboard-nav { grid-area: nav; }
+.dashboard-main { grid-area: main; }
+.dashboard-aside { grid-area: aside; }
+.dashboard-footer { grid-area: footer; }
+
+/* Masonry-style layout for mixed content */
+.masonry-grid {
+    column-count: auto;
+    column-width: 300px;
+    column-gap: 2rem;
+    column-fill: balance;
+}
+
+.masonry-item {
+    break-inside: avoid;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+/* Card deck layout */
+.card-deck {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.card-deck > * {
+    height: fit-content;
+}
+
+/* =============================================================================
+   Mobile-First Responsive Navigation
+   ============================================================================= */
+
+.mobile-first-nav {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .mobile-first-nav {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+/* Mobile menu toggle */
+.mobile-menu-toggle {
+    display: block;
+    background: none;
+    border: 2px solid var(--racing-orange);
+    color: var(--racing-orange);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    align-self: flex-end;
+}
+
+@media (min-width: 768px) {
+    .mobile-menu-toggle {
+        display: none;
+    }
+}
+
+/* =============================================================================
+   Debug Mode - Development Helper
+   ============================================================================= */
+
+.debug-grid {
+    outline: 1px solid red;
+    background: rgba(255, 0, 0, 0.1);
+}
+
+.debug-grid * {
+    outline: 1px solid blue;
+    background: rgba(0, 0, 255, 0.05);
+}
+
+/* Show grid lines in debug mode */
+.debug-grid[data-debug="true"] {
+    background-image: 
+        linear-gradient(rgba(255, 107, 53, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 107, 53, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+/* =============================================================================
+   Container Query Polyfill Support
+   ============================================================================= */
+
+/* Fallback for browsers without container query support */
+@supports not (container-type: inline-size) {
+    .responsive-grid {
+        /* Fallback to viewport-based media queries */
+    }
+    
+    @media (min-width: 400px) {
+        .metrics-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    
+    @media (min-width: 600px) {
+        .metrics-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+    
+    @media (min-width: 900px) {
+        .metrics-grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Table Headers</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/sports-theme.css">
+    <link rel="stylesheet" href="assets/css/dashboard-content.css">
+    <style>
+        body {
+            background-color: #0F0F23;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            padding: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test: Platform Campaign Table Headers</h1>
+    
+    <div class="enhanced-campaign-table">
+        <h4 style="color: #FF9900; margin-bottom: 1rem; display: flex; align-items: center;">
+            <span style="margin-right: 0.5rem;">📊</span>
+            Amazon Campaign Performance
+            <span style="margin-left: auto; font-size: 0.8rem; color: #999;">5 campaigns</span>
+        </h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>Campaign Name</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>ROAS</th>
+                    <th>Real ROI</th>
+                    <th>POAS</th>
+                    <th>Spend</th>
+                    <th>Revenue</th>
+                    <th>Trend</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Subaru Turbo Upgrades</td>
+                    <td>Sponsored Products</td>
+                    <td>Active</td>
+                    <td>4.22x</td>
+                    <td>2.53x</td>
+                    <td>0.93x</td>
+                    <td>$329.67</td>
+                    <td>$1,389.95</td>
+                    <td>📈 +15%</td>
+                    <td><button>View</button></td>
+                </tr>
+                <tr>
+                    <td>Honda Type R Parts</td>
+                    <td>Sponsored Products</td>
+                    <td>Active</td>
+                    <td>4.24x</td>
+                    <td>2.54x</td>
+                    <td>1.19x</td>
+                    <td>$174.56</td>
+                    <td>$739.98</td>
+                    <td>📈 +22%</td>
+                    <td><button>View</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <hr style="margin: 2rem 0;">
+    
+    <h2>Regular Table (for comparison)</h2>
+    <table style="border: 1px solid #333; border-collapse: collapse; width: 100%;">
+        <thead style="background: #FF6B35;">
+            <tr>
+                <th style="border: 1px solid #333; padding: 1rem; color: white;">Campaign</th>
+                <th style="border: 1px solid #333; padding: 1rem; color: white;">ROAS</th>
+                <th style="border: 1px solid #333; padding: 1rem; color: white;">POAS</th>
+                <th style="border: 1px solid #333; padding: 1rem; color: white;">Spend</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="border: 1px solid #333; padding: 1rem;">Test Campaign</td>
+                <td style="border: 1px solid #333; padding: 1rem;">4.22x</td>
+                <td style="border: 1px solid #333; padding: 1rem;">0.93x</td>
+                <td style="border: 1px solid #333; padding: 1rem;">$329.67</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
