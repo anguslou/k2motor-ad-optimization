@@ -8,8 +8,20 @@
     ],
     "rewrites": [
       {
-        "source": "**",
+        "source": "/k2motor",
         "destination": "/index.html"
+      },
+      {
+        "source": "/k2motor/",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/k2motor/dashboard",
+        "destination": "/k2motor-dashboard/index.html"
+      },
+      {
+        "source": "/k2motor/dashboard/**",
+        "destination": "/k2motor-dashboard/index.html"
       }
     ]
   }

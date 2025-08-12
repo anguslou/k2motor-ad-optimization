@@ -61,9 +61,9 @@ class HoverTooltips {
             'Subaru': {
                 title: 'Subaru WRX/STI Performance Parts',
                 description: 'High-performance turbo systems, intercoolers, and racing components for Subaru WRX and STI models.',
-                performance: 'High ROAS: 4.22x | Low POAS: 0.8x (needs optimization)',
+                performance: 'High ROAS: 4.22x | Good POAS: 1.48x (profitable)',
                 market: 'Rally and track enthusiasts with high engagement',
-                context: 'Profitable audience but high manufacturing costs impact POAS',
+                context: 'Profitable business with good margins after accounting for all costs',
                 icon: '🏁'
             },
             'BMW': {

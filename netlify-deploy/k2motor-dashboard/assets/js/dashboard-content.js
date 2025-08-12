@@ -12,7 +12,7 @@ class DashboardContentManager {
         this.margins = {
             'Honda': 0.28,      // 28% margin
             'Toyota': 0.35,     // 35% margin  
-            'Subaru': 0.22,     // 22% margin
+            'Subaru': 0.35,     // 35% margin (corrected: includes all hidden costs - manufacturing, shipping, supplier fees)
             'BMW': 0.41,        // 41% margin
             'Audi': 0.38,       // 38% margin
             'Universal': 0.25   // 25% default margin

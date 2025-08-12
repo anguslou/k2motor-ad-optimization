@@ -223,7 +223,7 @@ class DataDrilldown {
                     totalRevenue: '$19,250',
                     adSpend: '$4,560',
                     roas: '4.22x',
-                    poas: '0.8x',
+                    poas: '1.48x',
                     orders: 35,
                     avgOrderValue: '$550'
                 },
@@ -237,7 +237,7 @@ class DataDrilldown {
                     grossMargin: '35% (High manufacturing costs)',
                     productCosts: '$12,513',
                     netProfit: '$2,177',
-                    profitMargin: '11.3% (Needs optimization)'
+                    profitMargin: '11.3% (Profitable after all costs)'
                 },
                 attributionDetails: {
                     directAttribution: '72% of revenue',
